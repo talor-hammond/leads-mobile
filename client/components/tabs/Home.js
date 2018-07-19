@@ -19,7 +19,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: 'grey',
         alignItems: 'center',
         justifyContent: 'center'
     }

@@ -6,17 +6,54 @@ import {
     View,
     TextInput,
     TouchableOpacity,
-    StatusBar
+    StatusBar,
+    Modal
 } from 'react-native'
 
+// Our register modal:
+import Register from './Register'
 
 class LoginForm extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            modalVisible: false
+        }
+
+        this.handleRegisterModal = this.handleRegisterModal.bind(this)
+    }
+
+    handleRegisterModal() {
+        this.setState({
+            modalVisible: !this.state.modalVisible
+        })
+    }
+
     render() {
+        const { modalVisible } = this.state
+
         return (
             <View style={styles.container}>
                 <StatusBar
                     barStyle="light-content"
                 />
+
+                <Modal
+                    animationType='slide'
+                    transparent={false}
+                    visible={modalVisible}
+                >
+                    <Register goBack={this.handleRegisterModal}/>
+                </Modal>
+
+                <View style={styles.helpTextContainer}>
+                    <TouchableOpacity onPress={() => this.handleRegisterModal()}>
+                        <Text>Haven't registered yet?
+                            <Text style={styles.helpText}> Sign up here</Text>
+                        </Text>
+                    </TouchableOpacity> {/* TODO: Make the sign up here text clickable! Take to Register component */}
+                </View>
                 <TextInput
                     placeholder="email"
                     placeholderTextColor='#FFF'
@@ -53,17 +90,24 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontSize: 17,
         color: '#FFF',
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
+        borderRadius: 6.5
     },
     buttonContainer: {
         backgroundColor: '#2980b9',
         paddingVertical: 15,
+        borderRadius: 6.5
     },
     buttonText: {
         textAlign: 'center',
         color: '#FFFFFF',
         fontWeight: '700',
         fontSize: 20
+    },
+    helpTextContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 10
     }
 })
 
