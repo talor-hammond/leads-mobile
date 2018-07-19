@@ -18,6 +18,8 @@ const logo = require('../../assets/logo.png')
 
 export default class Login extends React.Component { 
     render() {
+        console.log(this.props.navigation)
+
         return (
             <KeyboardAvoidingView behavior='padding' style={styles.container}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>

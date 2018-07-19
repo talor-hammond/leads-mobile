@@ -61,6 +61,7 @@ export const LoginStack = createStackNavigator({
     MainTabs: {
         screen: MainTabs
     }
+        // initialRouteName: "Login" if logged out: otherwise go to MainTabs
 })
 
 // TODO: Switch navigator which either goes to our LoginStack if logged out, or MainTabs if logged inMain app navigator (switch)
