@@ -1,12 +1,15 @@
 import React from 'react';
 
 // Components:
-import Login from './client/components/SignUp/Login.js'
+import Login from './client/components/signUp/Login.js'
+
+// Testing TabNavigator is working...
+import { Tab } from './client/components/config/navigation'
 
 export default class App extends React.Component {
   render() {
     return (
-      <Login />
+      <Tab />
     )
   }
 }
