@@ -6,19 +6,53 @@ import {
     View,
     TextInput,
     TouchableOpacity,
-    StatusBar
+    StatusBar,
+    Modal
 } from 'react-native'
 
+// Our register modal:
+import Register from './Register'
 
 class LoginForm extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            modalVisible: false
+        }
+
+        this.handleRegisterModal = this.handleRegisterModal.bind(this)
+    }
+
+    handleRegisterModal() {
+        this.setState({
+            modalVisible: !this.state.modalVisible
+        })
+    }
+
     render() {
+        const { modalVisible } = this.state
+
         return (
             <View style={styles.container}>
                 <StatusBar
                     barStyle="light-content"
                 />
+
+                <Modal
+                    animationType='slide'
+                    transparent={false}
+                    visible={modalVisible}
+                >
+                    <Register goBack={this.handleRegisterModal}/>
+                </Modal>
+
                 <View style={styles.helpTextContainer}>
-                    <Text style={styles.helpText}>Haven't registered yet? Sign up here</Text> {/* TODO: Make the sign up here text clickable! Take to Register component */}
+                    <TouchableOpacity onPress={() => this.handleRegisterModal()}>
+                        <Text>Haven't registered yet?
+                            <Text style={styles.helpText}> Sign up here</Text>
+                        </Text>
+                    </TouchableOpacity> {/* TODO: Make the sign up here text clickable! Take to Register component */}
                 </View>
                 <TextInput
                     placeholder="email"
