@@ -26,11 +26,11 @@ export default class Register extends React.Component {
                             style={styles.logo}
                             source={logo}
                         />
-                        <Text style={styles.title}>Tinder for jumper leads</Text>
+                        <Text style={styles.title}>Get started by filling out the form below!</Text>
                     </View>
                 </TouchableWithoutFeedback>
                 <View style={styles.formContainer}>
-                
+
                 </View>
             </KeyboardAvoidingView >
         )
@@ -39,7 +39,7 @@ export default class Register extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#3498db',
+        backgroundColor: 'red',
     },
     logoContainer: {
         flexGrow: 1,
