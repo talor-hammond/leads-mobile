@@ -14,7 +14,7 @@ import {
 import LoginForm from './LoginForm'
 
 // Assets:
-const logo = require('../assets/logo.png')
+const logo = require('../../assets/logo.png')
 
 export default class Login extends React.Component { 
     render() {
@@ -26,7 +26,7 @@ export default class Login extends React.Component {
                             style={styles.logo}
                             source={logo}
                         />
-                        <Text style={styles.title}>He's just a poor boy, from a poor family</Text>
+                        <Text style={styles.title}>Tinder for jumper leads</Text>
                     </View>
                 </TouchableWithoutFeedback>
                 <View style={styles.formContainer}>
@@ -52,8 +52,9 @@ const styles = StyleSheet.create({
     },
     title: {
         color: '#FFF',
+        fontSize: 25,
         marginTop: 10,
-        width: 135,
+        width: 170,
         textAlign: 'center',
         opacity: 0.89
     }

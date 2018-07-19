@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
         height: 50,
         backgroundColor: 'rgba(255,255,255,0.2)',
         marginBottom: 10,
+        fontSize: 17,
         color: '#FFF',
         paddingHorizontal: 10
     },
@@ -61,7 +62,8 @@ const styles = StyleSheet.create({
     buttonText: {
         textAlign: 'center',
         color: '#FFFFFF',
-        fontWeight: '700'
+        fontWeight: '700',
+        fontSize: 20
     }
 })
 

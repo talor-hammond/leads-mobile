@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components:
-import Login from './client/components/Login.js'
+import Login from './client/components/SignUp/Login.js'
 
 export default class App extends React.Component {
   render() {
