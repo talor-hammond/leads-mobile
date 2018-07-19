@@ -17,6 +17,9 @@ class LoginForm extends React.Component {
                 <StatusBar
                     barStyle="light-content"
                 />
+                <View style={styles.helpTextContainer}>
+                    <Text style={styles.helpText}>Haven't registered yet? Sign up here</Text> {/* TODO: Make the sign up here text clickable! Take to Register component */}
+                </View>
                 <TextInput
                     placeholder="email"
                     placeholderTextColor='#FFF'
@@ -66,6 +69,11 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontWeight: '700',
         fontSize: 20
+    },
+    helpTextContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 10
     }
 })
 
