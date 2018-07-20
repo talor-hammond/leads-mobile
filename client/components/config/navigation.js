@@ -86,6 +86,7 @@ export const createRootNavigator = (signedIn = false) => {
             }
         },
         {
+            // if a user is signedIn: render "SignedIn" TabNav; otherwise "SignedOut" StackNav
             initialRouteName: signedIn ? "SignedIn" : "SignedOut"
         }
     )

@@ -4,7 +4,6 @@ import React from 'react';
 import Login from './client/components/signUp/Login.js'
 import Register from './client/components/signUp/Register'
 
-// Testing TabNavigator is working...
 import { MainTabs, LoginStack, createRootNavigator } from './client/components/config/navigation'
 
 export default class App extends React.Component {
@@ -12,9 +11,11 @@ export default class App extends React.Component {
     super(props)
 
     this.state = {
-      signedIn: false
+      signedIn: true // tracking whether a user is signedIn; defaults to false
     }
   }
+
+
 
   render() {
     const { signedIn } = this.state // pulling from state...
