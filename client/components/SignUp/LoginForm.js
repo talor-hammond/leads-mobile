@@ -16,7 +16,7 @@ import Register from './Register'
 class LoginForm extends React.Component {
 
     render() {
-        const {navigation} = this.props
+        const { navigation } = this.props
         console.log(navigation)
 
         return (
@@ -27,9 +27,7 @@ class LoginForm extends React.Component {
 
                 <View style={styles.helpTextContainer}>
                     <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                        <Text>Haven't registered yet?
-                            <Text style={styles.helpText}> Sign up here</Text>
-                        </Text>
+                        <Text>Haven't registered yet?<Text style={styles.helpText}>Sign up here</Text></Text>
                     </TouchableOpacity> {/* TODO: Make the sign up here text clickable! Take to Register component */}
                 </View>
 
@@ -51,7 +49,7 @@ class LoginForm extends React.Component {
                     style={styles.input}
                     ref={(input) => this.passwordInput = input}
                 />
-                <TouchableOpacity style={styles.buttonContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate('MainTabs')} style={styles.buttonContainer}>
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
             </View>
@@ -87,6 +85,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 10
+    },
+    helpText: {
+        // color: 'rgba(155, 100, 0, .75)',
+        color: '#70161E',
+        textDecorationLine: 'underline',
+        marginHorizontal: 5
     }
 })
 

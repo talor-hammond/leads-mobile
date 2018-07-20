@@ -8,6 +8,9 @@ import {
     createBottomTabNavigator
 } from 'react-navigation'
 
+// Icons import:
+import Icon from 'react-native-vector-icons/Ionicons'
+
 // Tabs:
 import Home from '../tabs/Home'
 import MapView from '../tabs/MapView'
@@ -19,37 +22,6 @@ import Profile from '../tabs/Profile'
 import Login from '../../components/signUp/Login'
 import Register from '../../components/signUp/Register'
 
-// Tab navigator
-export const MainTabs = createBottomTabNavigator({
-    Home: {
-        screen: Home
-    },
-    MapView: {
-        screen: MapView
-    },
-    AddPost: {
-        screen: AddPost
-    },
-    Messages: {
-        screen: Messages
-    },
-    Profile: {
-        screen: Profile
-    }
-}, {
-        swipeEnabled: true,
-        tabBarPosition: 'bottom',
-        tabBarOptions: {
-            activeTintColor: '#f2f2f2',
-            activeBackgroundColor: '#2EC4B6',
-            inactiveTintColor: '#666',
-            labelStyle: {
-                fontSize: 12,
-                padding: 12
-            }
-        }
-    })
-
 // StackNavigator for our Login screens:
 export const LoginStack = createStackNavigator({
     Login: {
@@ -58,10 +30,72 @@ export const LoginStack = createStackNavigator({
     Register: {
         screen: Register
     },
-    MainTabs: {
-        screen: MainTabs
+    MainTabs: { // Our main tabs; TabNavigator
+        screen: createBottomTabNavigator({
+            Home: {
+                screen: Home,
+                navigationOptions: {
+                    toBeLabel: 'Home',
+                    tabBarLabel: ({tintColor}) => ( // TODO: Sort tint-color?
+                        <Icon name='ios-home' size={40} />
+                    )
+                }
+            },
+            MapView: {
+                screen: MapView,
+                navigationOptions: {
+                    toBeLabel: 'MapView',
+                    tabBarLabel: ({tintColor}) => (
+                        <Icon name='ios-map' size={40} />
+                    )
+                }
+            },
+            // AddPost: {
+            //     screen: AddPost,
+            //     navigationOptions: {
+            //         toBeLabel: 'AddPost',
+            //         tabBarLabel: ({tintColor}) => (
+            //             <Icon name='ios-add-circle-outline' size={24} />
+            //         )
+            //     }
+            // },
+            Messages: {
+                screen: Messages,
+                navigationOptions: {
+                    toBeLabel: 'Messages',
+                    tabBarLabel: ({tintColor}) => (
+                        <Icon name='ios-send' size={40} />
+                    )
+                }
+            },
+            Profile: {
+                screen: Profile,
+                navigationOptions: {
+                    toBeLabel: 'Profile',
+                    tabBarLabel: ({tintColor}) => (
+                        <Icon name='ios-person' size={40} />
+                    )
+                }
+            }
+        },
+            {
+                navigationOptions: ({ navigation }) => ({ // Options for the navbar, header, etc.:
+                    
+                }),
+                tabBarOptions: {
+                    swipeEnabled: true,
+                    activeTintColor: 'grey', // Not working?
+                    activeBackgroundColor: '#666', // Working!
+                    inactiveTintColor: 'black', // Not working either?
+                    inactiveBackgroundColor: '#999' // Working!
+                    // labelStyle: {
+                    //     fontSize: 12,
+                    //     padding: 12
+                    // }
+                }
+            })
     }
-        // initialRouteName: "Login" if logged out: otherwise go to MainTabs
+    // initialRouteName: "Login" if logged out: otherwise go to MainTabs
 })
 
 // TODO: Switch navigator which either goes to our LoginStack if logged out, or MainTabs if logged inMain app navigator (switch)
