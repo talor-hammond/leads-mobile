@@ -39,10 +39,8 @@ export function loginUser (creds) {
         } else {
           const userInfo = saveUserToken(response.body.token)
           dispatch(receiveLogin(userInfo))
-          document.location = "/#/"
+          // document.location = "/#/"
         }
-      }).catch(err => alert("Try Again!")
-
-      )
+      }).catch(err => alert("Try Again!"))
   }
 }

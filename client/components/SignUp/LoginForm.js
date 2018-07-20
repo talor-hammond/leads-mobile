@@ -14,10 +14,17 @@ import {
 import Register from './Register'
 
 class LoginForm extends React.Component {
+    constructor(props) {
+        super(props) 
+
+        this.state = {
+            username: '',
+            password: ''
+        }
+    }
 
     render() {
         const { navigation } = this.props
-        console.log(navigation)
 
         return (
             <View style={styles.container}>
@@ -32,14 +39,15 @@ class LoginForm extends React.Component {
                 </View>
 
                 <TextInput
-                    placeholder="email"
+                    placeholder="username"
                     placeholderTextColor='#FFF'
-                    keyboardType="email-address"
+                    // keyboardType="email-address"
                     autoCapitalize="none"
                     autoCorrect={false}
                     returnKeyType="next"
                     onSubmitEditing={() => this.passwordInput.focus()}
                     style={styles.input}
+                    onChangeText={(username) => this.setState({username})}
                 />
                 <TextInput
                     placeholder="password"
@@ -48,6 +56,7 @@ class LoginForm extends React.Component {
                     secureTextEntry
                     style={styles.input}
                     ref={(input) => this.passwordInput = input}
+                    onChangeText={(password) => this.setState({password})}
                 />
                 <TouchableOpacity onPress={() => navigation.navigate('MainTabs')} style={styles.buttonContainer}>
                     <Text style={styles.buttonText}>Login</Text>
