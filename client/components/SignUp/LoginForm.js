@@ -14,24 +14,10 @@ import {
 import Register from './Register'
 
 class LoginForm extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            modalVisible: false
-        }
-
-        this.handleRegisterModal = this.handleRegisterModal.bind(this)
-    }
-
-    handleRegisterModal() {
-        this.setState({
-            modalVisible: !this.state.modalVisible
-        })
-    }
 
     render() {
-        const { modalVisible } = this.state
+        const {navigation} = this.props
+        console.log(navigation)
 
         return (
             <View style={styles.container}>
@@ -39,21 +25,14 @@ class LoginForm extends React.Component {
                     barStyle="light-content"
                 />
 
-                <Modal
-                    animationType='slide'
-                    transparent={false}
-                    visible={modalVisible}
-                >
-                    <Register goBack={this.handleRegisterModal}/>
-                </Modal>
-
                 <View style={styles.helpTextContainer}>
-                    <TouchableOpacity onPress={() => this.handleRegisterModal()}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Register')}>
                         <Text>Haven't registered yet?
                             <Text style={styles.helpText}> Sign up here</Text>
                         </Text>
                     </TouchableOpacity> {/* TODO: Make the sign up here text clickable! Take to Register component */}
                 </View>
+
                 <TextInput
                     placeholder="email"
                     placeholderTextColor='#FFF'
