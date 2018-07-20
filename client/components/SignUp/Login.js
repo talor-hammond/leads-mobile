@@ -41,7 +41,7 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#3498db',
+        backgroundColor: '#ff7676',
     },
     logoContainer: {
         flexGrow: 1,
