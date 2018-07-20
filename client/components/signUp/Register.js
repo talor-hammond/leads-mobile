@@ -11,13 +11,17 @@ import {
     TouchableWithoutFeedback
 } from 'react-native'
 
-import LoginForm from './LoginForm'
+import RegisterForm from './RegisterForm'
 
 // Assets:
 const logo = require('../../assets/logo.png')
 
 export default class Register extends React.Component { 
+    static navigationOptions = { header: null } // Removing the navigation header from the top.
+
     render() {
+        console.log('Register props: ' + this.props)
+
         return (
             <KeyboardAvoidingView behavior='padding' style={styles.container}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -26,11 +30,11 @@ export default class Register extends React.Component {
                             style={styles.logo}
                             source={logo}
                         />
-                        <Text style={styles.title}>Get started by filling out the form below!</Text>
+                        <Text style={styles.subtitle}>Get started by filling out the form below!</Text>
                     </View>
                 </TouchableWithoutFeedback>
                 <View style={styles.formContainer}>
-
+                    <RegisterForm navigation={this.props.navigation}/>
                 </View>
             </KeyboardAvoidingView >
         )
@@ -39,7 +43,7 @@ export default class Register extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'red',
+        backgroundColor: '#666',
     },
     logoContainer: {
         flexGrow: 1,
@@ -50,9 +54,9 @@ const styles = StyleSheet.create({
         width: 135,
         height: 135
     },
-    title: {
+    subtitle: {
         color: '#FFF',
-        fontSize: 25,
+        fontSize: 15,
         marginTop: 10,
         width: 170,
         textAlign: 'center',

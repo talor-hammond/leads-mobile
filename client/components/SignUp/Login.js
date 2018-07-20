@@ -17,9 +17,9 @@ import LoginForm from './LoginForm'
 const logo = require('../../assets/logo.png')
 
 export default class Login extends React.Component { 
-    render() {
-        console.log(this.props.navigation)
+    static navigationOptions = { header: null } // Removing the navigation header from the top.
 
+    render() {
         return (
             <KeyboardAvoidingView behavior='padding' style={styles.container}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -32,7 +32,7 @@ export default class Login extends React.Component {
                     </View>
                 </TouchableWithoutFeedback>
                 <View style={styles.formContainer}>
-                    <LoginForm />
+                    <LoginForm navigation={this.props.navigation}/>
                 </View>
             </KeyboardAvoidingView >
         )
@@ -51,6 +51,9 @@ const styles = StyleSheet.create({
     logo: {
         width: 135,
         height: 135
+    },
+    formContainer: {
+        flex: 1
     },
     title: {
         color: '#FFF',
