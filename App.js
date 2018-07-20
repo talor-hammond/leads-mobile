@@ -11,6 +11,7 @@ export default class App extends React.Component {
   render() {
     return (
       <LoginStack />
+      // <Login />
       // <Register />
     )
   }

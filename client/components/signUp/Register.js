@@ -17,6 +17,8 @@ import LoginForm from './LoginForm'
 const logo = require('../../assets/logo.png')
 
 export default class Register extends React.Component { 
+    static navigationOptions = { header: null } // Removing the navigation header from the top.
+
     render() {
         return (
             <KeyboardAvoidingView behavior='padding' style={styles.container}>
