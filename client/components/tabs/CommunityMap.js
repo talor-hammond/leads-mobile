@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { MapView } from 'expo'
 
 import {
     View,
@@ -9,9 +10,15 @@ import {
 class CommunityMap extends Component {
     render() {
         return (
-            <View style={styles.container}>
-                <Text>Hello people of earth</Text>
-            </View>
+                <MapView
+                    style={styles.map}
+                    initialRegion={{ // feed in phones geolocation from state.
+                        latitude: 37.78825,
+                        longitude: -122.4324,
+                        latitudeDelta: 0.0922,
+                        longitudeDelta: 0.0421,
+                    }}
+                />
         )
     }
 }
@@ -22,6 +29,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'blue',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    map: {
+        flex: 1
     }
 })
 
