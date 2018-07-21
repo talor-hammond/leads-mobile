@@ -6,12 +6,17 @@ import {
     StyleSheet
 } from 'react-native'
 
+import CardComponent from './homeComponents/CardComponent'
+import { Container, Content } from 'native-base';
+
 class Home extends Component {
     render() {
         return (
-            <View style={styles.container}>
-                <Text>Hello people of earth</Text>
-            </View>
+            <Container>
+                <Content>
+                    <CardComponent/>
+                </Content>
+            </Container>
         )
     }
 }
