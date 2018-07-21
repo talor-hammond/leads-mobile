@@ -10,7 +10,6 @@ import {
 
 // Icons import:
 import Icon from 'react-native-vector-icons/Ionicons'
-
 // Tabs:
 import Home from '../tabs/Home'
 import MapView from '../tabs/MapView'
@@ -39,7 +38,7 @@ export const SignedIn = createBottomTabNavigator({
         navigationOptions: {
             toBeLabel: 'Home',
             tabBarLabel: ({ tintColor }) => ( // TODO: Sort tint-color?
-                <Icon name='ios-home' size={40} />
+                <Icon name='ios-home-outline' size={35} />
             )
         }
     },
@@ -48,7 +47,7 @@ export const SignedIn = createBottomTabNavigator({
         navigationOptions: {
             toBeLabel: 'MapView',
             tabBarLabel: ({ tintColor }) => (
-                <Icon name='ios-map' size={40} />
+                <Icon name='ios-map-outline' size={35} />
             )
         }
     },
@@ -57,7 +56,7 @@ export const SignedIn = createBottomTabNavigator({
         navigationOptions: {
             toBeLabel: 'Messages',
             tabBarLabel: ({ tintColor }) => (
-                <Icon name='ios-send' size={40} />
+                <Icon name='ios-send-outline' size={35} />
             )
         }
     },
@@ -66,7 +65,7 @@ export const SignedIn = createBottomTabNavigator({
         navigationOptions: {
             toBeLabel: 'Profile',
             tabBarLabel: ({ tintColor }) => (
-                <Icon name='ios-person' size={40} />
+                <Icon name='ios-person-outline' size={35} />
             )
         }
     }
