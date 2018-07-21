@@ -15,6 +15,16 @@ class Home extends Component {
             <Container>
                 <Content>
                     <CardComponent/>
+                    <CardComponent/>
+                    <CardComponent/>
+                    <CardComponent/>
+                    <CardComponent/>
+                    <CardComponent/>
+                    <CardComponent/>
+                    <CardComponent/>
+                    <CardComponent/>
+                    <CardComponent/>
+                    <CardComponent/>
                 </Content>
             </Container>
         )

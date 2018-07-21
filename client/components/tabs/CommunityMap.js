@@ -6,7 +6,7 @@ import {
     StyleSheet
 } from 'react-native'
 
-class MapView extends Component {
+class CommunityMap extends Component {
     render() {
         return (
             <View style={styles.container}>
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default MapView
+export default CommunityMap

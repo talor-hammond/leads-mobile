@@ -12,7 +12,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons'
 // Tabs:
 import Home from '../tabs/Home'
-import MapView from '../tabs/MapView'
+import CommunityMap from '../tabs/CommunityMap'
 // import AddPost from '../tabs/AddPost'
 import Messages from '../tabs/Messages'
 import Profile from '../tabs/Profile'
@@ -42,10 +42,10 @@ export const SignedIn = createBottomTabNavigator({
             )
         }
     },
-    MapView: {
-        screen: MapView,
+    CommunityMap: {
+        screen: CommunityMap,
         navigationOptions: {
-            toBeLabel: 'MapView',
+            toBeLabel: 'CommunityMap',
             tabBarLabel: ({ tintColor }) => (
                 <Icon name='ios-map-outline' size={35} />
             )
