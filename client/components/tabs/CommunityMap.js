@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { MapView, Marker } from 'expo'
+import { MapView } from 'expo'
 
 import {
     View,
-    Text,
     StyleSheet
 } from 'react-native'
 
@@ -20,8 +19,12 @@ class CommunityMap extends Component {
             },
             posts: [ // feed in our redux 'posts' state here!
                 {
+                    id: 1,
+                    title: 'My car broke down foo',
+                    description: 'Can someone bring me jumper leads plz!',
                     latitude: 37.78825,
-                    longitude: -122.4324
+                    longitude: -122.4324,
+                    user_id: 2
                 }
             ]
         }
@@ -48,10 +51,10 @@ class CommunityMap extends Component {
                 </MapView.Marker>
 
                 {
-                    posts.map((post, i) => {
+                    posts.map(post => { // mapping through each item in posts...
                         return (
                             <MapView.Marker
-                                key={i}
+                                key={post.id}
                                 coordinate={{
                                     latitude: post.latitude,
                                     longitude: post.longitude
