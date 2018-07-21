@@ -27,12 +27,12 @@ class LoginForm extends React.Component {
 
                 <View style={styles.helpTextContainer}>
                     <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                        <Text>Haven't registered yet?<Text style={styles.helpText}>Sign up here</Text></Text>
+                        <Text>Haven't registered yet? <Text style={styles.helpText}>Sign up here</Text></Text>
                     </TouchableOpacity> {/* TODO: Make the sign up here text clickable! Take to Register component */}
                 </View>
 
                 <TextInput
-                    placeholder="email"
+                    placeholder="email address"
                     placeholderTextColor='#FFF'
                     keyboardType="email-address"
                     autoCapitalize="none"
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         borderRadius: 6.5
     },
     buttonContainer: {
-        backgroundColor: '#2980b9',
+        backgroundColor: '#216583',
         paddingVertical: 15,
         borderRadius: 6.5
     },
