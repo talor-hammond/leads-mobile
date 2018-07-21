@@ -18,8 +18,8 @@ import Messages from '../tabs/Messages'
 import Profile from '../tabs/Profile'
 
 // Login stack:
-import Login from '../../components/signUp/Login'
-import Register from '../../components/signUp/Register'
+import Login from '../../components/SignUp/Login'
+import Register from '../../components/SignUp/Register'
 
 // StackNavigator for our Login screens: when a user is SignedOut...
 export const SignedOut = createStackNavigator({
