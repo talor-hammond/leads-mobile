@@ -10,7 +10,7 @@ import reducers from './client/reducers/index'
 // Our root component; 'switches' on auth state?
 import { createRootNavigator } from './client/components/config/navigation'
 
-let store = createStore(reducers, compose(
+let store = createStore(reducers, compose( // global object, which stores our different types of state.
   applyMiddleware(thunkMiddleware)
 ))
 
@@ -25,11 +25,11 @@ export default class App extends React.Component {
 
   render() {
     const { signedIn } = this.state // pulling from state...
-    const Layout = createRootNavigator(signedIn)
+    const App = createRootNavigator(signedIn)
 
     return (
       <Provider store={store}>
-        <Layout />
+        <App />
       </Provider>
     )
   }
