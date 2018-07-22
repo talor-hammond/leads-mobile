@@ -32,7 +32,7 @@ export const SignedOut = createStackNavigator({
 })
 
 // TabNavigator for our Main Tabs -- when a user is SignedIn...
-export const SignedIn = createBottomTabNavigator({
+export const SignedInTabs = createBottomTabNavigator({
     Home: {
         screen: Home,
         navigationOptions: {
@@ -71,12 +71,12 @@ export const SignedIn = createBottomTabNavigator({
     }
 })
 
-// export const SignedIn = createStackNavigator({
-//     SignedInTabs: {
-//         screen: SignedIn,
-//         navigationOptions: { title: 'Header title' }
-//     }
-// })
+export const SignedIn = createStackNavigator({
+    SignedInTabs: {
+        screen: SignedInTabs,
+        navigationOptions: { title: 'leads' }
+    }
+})
 
 // const rootNavigator = createSwitchNavigator({ // Decides whether to go to our stack of Login screens, or MainTabs
 

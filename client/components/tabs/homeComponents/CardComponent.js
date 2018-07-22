@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
     },
     username: {
         fontWeight: '700',
-        paddingHorizontal: 5
+        paddingHorizontal: 8,
+        fontSize: 20
     },
     topic: {
         fontStyle: 'italic'
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     descriptionContainer: {
-        paddingHorizontal: 10
+        paddingTop: 10
     },
     address: {
         color: 'blue',
