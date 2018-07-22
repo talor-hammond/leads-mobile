@@ -6,10 +6,42 @@ import {
     View,
     TextInput,
     TouchableOpacity,
-    StatusBar
+    StatusBar,
+    Alert
 } from 'react-native'
 
 class RegisterForm extends React.Component {
+
+    super(props) {
+        constructor(props)
+
+        this.state = {
+            username: '',
+            password: '',
+            confirmedPassword: '',
+            failedRegister: false
+        }
+
+        this.register = this.register.bind(this)
+    }
+
+    register() {
+        const { password, confirmedPassword } = this.state
+
+        if (password === confirmedPassword) {
+            // let the user register...
+            console.log('Success!')
+        } else {
+            Alert.alert(
+                'Failed to register',
+                'Passwords do not match',
+                [
+                  {text: 'Try again', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+              )
+        }
+    }
 
     render() {
         const { navigation } = this.props
@@ -20,7 +52,9 @@ class RegisterForm extends React.Component {
                     barStyle="light-content"
                 />
 
-                <TextInput
+
+
+                {/* <TextInput
                     placeholder="email"
                     placeholderTextColor='#FFF'
                     keyboardType="email-address"
@@ -29,7 +63,7 @@ class RegisterForm extends React.Component {
                     returnKeyType="next"
                     onSubmitEditing={() => this.usernameInput.focus()}
                     style={styles.input}
-                />
+                /> */}
                 <TextInput
                     placeholder="username"
                     placeholderTextColor='#FFF'
@@ -39,6 +73,7 @@ class RegisterForm extends React.Component {
                     onSubmitEditing={() => this.passwordInput.focus()}
                     ref={(input) => this.usernameInput = input}
                     style={styles.input}
+                    onChangeText={(text) => this.setState({username: text})}
                 />
                 <TextInput
                     placeholder="password"
@@ -48,6 +83,8 @@ class RegisterForm extends React.Component {
                     style={styles.input}
                     ref={(input) => this.passwordInput = input}
                     onSubmitEditing={() => this.reconfirmPassword.focus()}
+                    onChangeText={(text) => this.setState({password: text})}
+
                 />
                 <TextInput
                     placeholder="re-enter password"
@@ -56,8 +93,10 @@ class RegisterForm extends React.Component {
                     secureTextEntry
                     style={styles.input}
                     ref={(input) => this.reconfirmPassword = input}
+                    onChangeText={(text) => this.setState({confirmedPassword: text})}
+
                 />
-                <TouchableOpacity onPress={() => navigation.navigate('MainTabs')} style={styles.buttonContainer}>
+                <TouchableOpacity onPress={() => this.register()} style={styles.buttonContainer}>
                     <Text style={styles.buttonText}>Register</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Login')} style={[styles.buttonContainer, styles.backButton]}>
