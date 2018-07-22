@@ -6,25 +6,39 @@ import {
     StyleSheet
 } from 'react-native'
 
+// Redux:
+import { connect } from 'react-redux'
+import { getPostsRequest } from '../../actions/posts'
+
 import CardComponent from './homeComponents/CardComponent'
 import { Container, Content } from 'native-base';
 
 class Home extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+    componentDidMount() {
+        this.props.dispatch(getPostsRequest())
+    }
+
     render() {
         return (
-            <Container>
+            <Container style={styles.container}>
                 <Content>
-                    <CardComponent/>
-                    <CardComponent/>
-                    <CardComponent/>
-                    <CardComponent/>
-                    <CardComponent/>
-                    <CardComponent/>
-                    <CardComponent/>
-                    <CardComponent/>
-                    <CardComponent/>
-                    <CardComponent/>
-                    <CardComponent/>
+                    {
+                        this.props.posts.map(post => {
+                            return (
+                                <CardComponent
+                                    key={post.id}
+                                    username={post.username}
+                                    topic={post.topic}
+                                    title={post.title}
+                                    description={post.description}
+                                />
+                            )
+                        })
+                    }
                 </Content>
             </Container>
         )
@@ -34,10 +48,14 @@ class Home extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'grey',
-        alignItems: 'center',
-        justifyContent: 'center'
+        backgroundColor: 'rgba(200,200,200,.5)',
     }
 })
 
-export default Home
+const mapStateToProps = ({ posts }) => {
+    return {
+        posts
+    }
+}
+
+export default connect(mapStateToProps)(Home)

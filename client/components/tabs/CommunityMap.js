@@ -4,6 +4,7 @@ import { MapView } from 'expo'
 // Redux imports:
 import { connect } from 'react-redux'
 import { getPostsRequest } from '../../actions/posts'
+import request from 'superagent'
 
 import {
     Animated, // for our Animated.View inside each Marker
@@ -19,8 +20,8 @@ class CommunityMap extends Component {
             region: {  // feed in phones geolocation from state.
                 latitude: -41.297292,
                 longitude: 174.774144,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421
+                latitudeDelta: 0.025, // our 'zoom' level! 0.025 == a few city blocks
+                longitudeDelta: 0.025
             },
             posts: this.props.posts  // feed in our redux 'posts' state here!
         }
@@ -28,6 +29,16 @@ class CommunityMap extends Component {
 
     componentDidMount() {
         this.props.dispatch(getPostsRequest())
+    }
+
+    fetchAddress(lat, long) {
+        request
+            .get(`http://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&sensor=true`)
+            .then(res => {
+                const address = res.body.results[0].formatted_address
+                console.log(address)
+                return address
+            })
     }
 
     render() {
@@ -40,8 +51,8 @@ class CommunityMap extends Component {
         return (
             <MapView
                 style={styles.map}
-                provider={MapView.PROVIDER_GOOGLE}
-                customMapStyle={generatedMapStyle}
+                // provider={MapView.PROVIDER_GOOGLE}
+                // customMapStyle={generatedMapStyle} ...custom mapStyles are causing issues with custom marker style
                 initialRegion={region}
             >
 
@@ -60,12 +71,31 @@ class CommunityMap extends Component {
 
                 {
                     posts.map(post => { // mapping through each item in posts...
+                        // this.fetchAddress(post.lat, post.long)
+                        //     .then(address => {
+                        //         return (
+                        //             <MapView.Marker
+                        //                 key={post.post_id}
+                        //                 coordinate={{
+                        //                     latitude: post.lat,
+                        //                     longitude: post.long
+                        //                 }}
+                        //                 title={address}
+                        //                 description={post.description}
+                        //             >
+                        //                 <View style={[styles.otherMarker, styles.markerWrap]}>
+                        //                     <View style={styles.otherRing}></View>
+                        //                 </View>
+                        //             </MapView.Marker>
+                        //         )
+                        //     })
+
                         return (
                             <MapView.Marker
                                 key={post.post_id}
                                 coordinate={{
-                                    latitude: post.lat,
-                                    longitude: post.long
+                                    latitude: Number(post.lat),
+                                    longitude: Number(post.long)
                                 }}
                                 title={post.title}
                                 description={post.description}
@@ -94,7 +124,7 @@ const styles = StyleSheet.create({
     marker: {
         width: 15,
         height: 15,
-        borderRadius: 15 / 2,
+        borderRadius: 15 / 2, // make it a circle :~)
         borderWidth: 1,
         borderColor: 'white',
         backgroundColor: "rgba(130,4,150, 0.9)",
@@ -102,17 +132,19 @@ const styles = StyleSheet.create({
     ring: {
         width: 24,
         height: 24,
-        borderRadius: 12,
+        borderRadius: 24/2,
         backgroundColor: "rgba(130,4,150, 0.3)",
         position: "absolute",
         borderWidth: 1,
         borderColor: "rgba(130,4,150, 0.5)",
     },
     otherMarker: {
-        width: 8,
-        height: 8,
-        borderRadius: 4,
-        backgroundColor: "rgba(130,4,0, 0.9)"
+        width: 15,
+        height: 15,
+        borderRadius: 15 / 2,
+        borderWidth: 1,
+        borderColor: 'white',
+        backgroundColor: "rgba(255,4,0, 0.5)",
     },
     otherRing: {
         width: 24,
@@ -121,7 +153,7 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(130,4,0, 0.3)",
         position: "absolute",
         borderWidth: 1,
-        borderColor: "rgba(130,4,0, 0.5)"
+        borderColor: "rgba(200,4,0, 0.6)"
     }
 })
 
