@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { MapView } from 'expo'
+import { MapView, Location, Permissions } from 'expo'
 
 // Redux imports:
 import { connect } from 'react-redux'
@@ -26,19 +26,29 @@ class CommunityMap extends Component {
         }
     }
 
-    // componentWillMount() {
-    //     navigator.geolocation(position => {
-    //         console.log(position)
-    //     })
-    // }
+    _getLocationAsync = async () => {
+        const { status } = await Expo.Permissions.askAsync(Expo.Permissions.LOCATION);
 
+        if (status === 'granted') {
+            const location = await Expo.Location.getCurrentPositionAsync({
+                enableHighAccuracy: true,
+            });
+            console.log(location)
+        }
+    }
+
+    componentWillMount() {
+        // Location.getCurrentPositionAsync({ enableHighAccuracy: true })
+    }
+    
     componentDidMount() {
+        navigator.geolocation.getCurrentPosition(position => {
+            console.log(position)
+        })
         this.props.dispatch(getPostsRequest())
     }
 
     render() {
-        // console.log('Our redux state: ', this.props.posts)
-        // console.log('Our component\'s state: ', this.state.posts)
 
         const { region } = this.state // pulling from component's state...
         const { posts } = this.props // pulling from redux state...
@@ -108,7 +118,7 @@ const styles = StyleSheet.create({
     ring: {
         width: 24,
         height: 24,
-        borderRadius: 24/2,
+        borderRadius: 24 / 2,
         backgroundColor: "rgba(130,4,150, 0.3)",
         position: "absolute",
         borderWidth: 1,

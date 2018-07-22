@@ -74,7 +74,9 @@ export const SignedInTabs = createBottomTabNavigator({
 export const SignedIn = createStackNavigator({
     SignedInTabs: {
         screen: SignedInTabs,
-        navigationOptions: { title: 'leads' }
+        navigationOptions: {
+            title: 'leads'
+        }
     }
 })
 
