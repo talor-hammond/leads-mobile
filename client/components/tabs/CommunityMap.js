@@ -13,22 +13,12 @@ class CommunityMap extends Component {
 
         this.state = {
             region: {  // feed in phones geolocation from state.
-                latitude: 37.78825,
-                longitude: -122.4324,
+                latitude: -41.297292,
+                longitude: 174.774144,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421
             },
-            posts: [ // feed in our redux 'posts' state here!
-                {
-                    id: 1,
-                    topic: 'Car troubles',
-                    title: 'My car broke down foo',
-                    description: 'Can someone bring me jumper leads plz!',
-                    latitude: 37.78825,
-                    longitude: -122.2324, // WE NEED SOME CUBA ST DATA
-                    user_id: 2
-                }
-            ]
+            posts: []  // feed in our redux 'posts' state here!
         }
     }
 
@@ -90,9 +80,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     marker: {
-        width: 8,
-        height: 8,
-        borderRadius: 4,
+        width: 15,
+        height: 15,
+        borderRadius: 15 / 2,
+        borderWidth: 1,
+        borderColor: 'white',
         backgroundColor: "rgba(130,4,150, 0.9)",
     },
     ring: {
