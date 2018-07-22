@@ -23,6 +23,12 @@ class LoginForm extends React.Component {
         }
     }
 
+    login() {
+        // check if user exists w matching user_name + hash
+        // setState of 'signedIn' in App.js to true? -- redirect to our main stacknav
+        console.log('Hi')
+    }
+
     render() {
         const { navigation } = this.props
 
@@ -58,7 +64,7 @@ class LoginForm extends React.Component {
                     ref={(input) => this.passwordInput = input}
                     onChangeText={(password) => this.setState({password})}
                 />
-                <TouchableOpacity onPress={() => navigation.navigate('MainTabs')} style={styles.buttonContainer}>
+                <TouchableOpacity onPress={() => this.login()} style={styles.buttonContainer}>
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
             </View>
