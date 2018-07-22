@@ -6,7 +6,7 @@ export function registerUserRequest ({user_name, password}) {
   // global.window.localStorage.setItem('fun', 'times')
   return (dispatch) => {
     request
-      .post('/api/auth/register')
+      .post('auth/register')
       .send({
         user_name, password
       })
