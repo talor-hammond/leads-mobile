@@ -71,6 +71,13 @@ export const SignedIn = createBottomTabNavigator({
     }
 })
 
+// export const SignedIn = createStackNavigator({
+//     SignedInTabs: {
+//         screen: SignedIn,
+//         navigationOptions: { title: 'Header title' }
+//     }
+// })
+
 // const rootNavigator = createSwitchNavigator({ // Decides whether to go to our stack of Login screens, or MainTabs
 
 // })

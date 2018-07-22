@@ -4,7 +4,6 @@ import { MapView } from 'expo'
 // Redux imports:
 import { connect } from 'react-redux'
 import { getPostsRequest } from '../../actions/posts'
-import request from 'superagent'
 
 import {
     Animated, // for our Animated.View inside each Marker
@@ -17,7 +16,7 @@ class CommunityMap extends Component {
         super(props)
 
         this.state = {
-            region: {  // feed in phones geolocation from state.
+            region: {  // TODO: feed in phones geolocation from state.
                 latitude: -41.297292,
                 longitude: 174.774144,
                 latitudeDelta: 0.025, // our 'zoom' level! 0.025 == a few city blocks
@@ -27,22 +26,18 @@ class CommunityMap extends Component {
         }
     }
 
+    // componentWillMount() {
+    //     navigator.geolocation(position => {
+    //         console.log(position)
+    //     })
+    // }
+
     componentDidMount() {
         this.props.dispatch(getPostsRequest())
     }
 
-    fetchAddress(lat, long) {
-        request
-            .get(`http://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&sensor=true`)
-            .then(res => {
-                const address = res.body.results[0].formatted_address
-                console.log(address)
-                return address
-            })
-    }
-
     render() {
-        console.log('Our redux state: ', this.props.posts)
+        // console.log('Our redux state: ', this.props.posts)
         // console.log('Our component\'s state: ', this.state.posts)
 
         const { region } = this.state // pulling from component's state...
@@ -70,26 +65,7 @@ class CommunityMap extends Component {
                 </MapView.Marker>
 
                 {
-                    posts.map(post => { // mapping through each item in posts...
-                        // this.fetchAddress(post.lat, post.long)
-                        //     .then(address => {
-                        //         return (
-                        //             <MapView.Marker
-                        //                 key={post.post_id}
-                        //                 coordinate={{
-                        //                     latitude: post.lat,
-                        //                     longitude: post.long
-                        //                 }}
-                        //                 title={address}
-                        //                 description={post.description}
-                        //             >
-                        //                 <View style={[styles.otherMarker, styles.markerWrap]}>
-                        //                     <View style={styles.otherRing}></View>
-                        //                 </View>
-                        //             </MapView.Marker>
-                        //         )
-                        //     })
-
+                    posts.map(post => {
                         return (
                             <MapView.Marker
                                 key={post.post_id}

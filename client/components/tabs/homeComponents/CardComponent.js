@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
 import {
+    Platform,
     View,
     Text,
-    StyleSheet
+    StyleSheet,
+    TouchableOpacity,
+    Linking
 } from 'react-native'
 
-import { Card, CardItem, Thumbnail, Body, Footer, Left, Right, Button, Icon } from 'native-base'
+import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 
 class CardComponent extends Component {
+    openGps(lat, long) {
+        console.log(lat, long)
+        Linking.openURL(`maps://app?saddr=100+101&daddr=${lat}+${long}`)
+    }
+
     render() {
-        const { username, topic, title, description } = this.props // need an address!
+        const { username, topic, title, description, address, lat, long } = this.props // need an address!
 
         return (
             <Card style={styles.cardContainer}>
@@ -24,10 +32,18 @@ class CardComponent extends Component {
                 </CardItem>
                 <CardItem>
                     <Body>
-                        <Text style={styles.title}>{title}</Text>
-                        <Text>{description}</Text>
+                        <View style={styles.titleContainer}>
+                            <Text style={styles.title}>{title}</Text>
+                        </View>
+                        <View style={styles.descriptionContainer}>
+                            <Text style={styles.description}>{description}</Text>
+                        </View>
                     </Body>
-                    <Text style={styles.address}>Address down here :~)</Text>
+                </CardItem>
+                <CardItem>
+                    <TouchableOpacity onPress={(lat, long) => this.openGps(lat, long)}>
+                        <Text style={styles.address}>{address}</Text>
+                    </TouchableOpacity>
                 </CardItem>
                 <CardItem header bordered style={{ height: 45 }}>
                     <Left>
@@ -59,12 +75,20 @@ const styles = StyleSheet.create({
     topic: {
         fontStyle: 'italic'
     },
-    title: {
-        fontWeight: '700'
+    titleContainer: {
+        alignItems: 'center'
     },
-    // address: {
-    //     marginLeft: 10
-    // }
+    title: {
+        fontWeight: '700',
+        textAlign: 'center'
+    },
+    descriptionContainer: {
+        paddingHorizontal: 10
+    },
+    address: {
+        color: 'blue',
+        textDecorationLine: 'underline'
+    }
 })
 
 export default CardComponent
