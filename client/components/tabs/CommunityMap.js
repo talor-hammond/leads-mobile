@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { MapView } from 'expo'
 
+// Redux imports:
+import { connect } from 'react-redux'
+import { getPostsRequest } from '../../actions/posts'
+
 import {
     Animated, // for our Animated.View inside each Marker
     View,
@@ -18,12 +22,20 @@ class CommunityMap extends Component {
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421
             },
-            posts: []  // feed in our redux 'posts' state here!
+            posts: this.props.posts  // feed in our redux 'posts' state here!
         }
     }
 
+    componentDidMount() {
+        this.props.dispatch(getPostsRequest())
+    }
+
     render() {
-        const { region, posts } = this.state // pulling from state...
+        console.log('Our redux state: ', this.props.posts)
+        // console.log('Our component\'s state: ', this.state.posts)
+
+        const { region } = this.state // pulling from component's state...
+        const { posts } = this.props // pulling from redux state...
 
         return (
             <MapView
@@ -50,10 +62,10 @@ class CommunityMap extends Component {
                     posts.map(post => { // mapping through each item in posts...
                         return (
                             <MapView.Marker
-                                key={post.id}
+                                key={post.post_id}
                                 coordinate={{
-                                    latitude: post.latitude,
-                                    longitude: post.longitude
+                                    latitude: post.lat,
+                                    longitude: post.long
                                 }}
                                 title={post.title}
                                 description={post.description}
@@ -116,216 +128,222 @@ const styles = StyleSheet.create({
 // Our custom map style:
 const generatedMapStyle = [
     {
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#242f3e"
-        }
-      ]
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#242f3e"
+            }
+        ]
     },
     {
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#746855"
-        }
-      ]
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#746855"
+            }
+        ]
     },
     {
-      "elementType": "labels.text.stroke",
-      "stylers": [
-        {
-          "color": "#242f3e"
-        }
-      ]
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#242f3e"
+            }
+        ]
     },
     {
-      "featureType": "administrative.land_parcel",
-      "elementType": "labels",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
+        "featureType": "administrative.land_parcel",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
     },
     {
-      "featureType": "administrative.locality",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#d59563"
-        }
-      ]
+        "featureType": "administrative.locality",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#d59563"
+            }
+        ]
     },
     {
-      "featureType": "poi",
-      "elementType": "labels.text",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
+        "featureType": "poi",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
     },
     {
-      "featureType": "poi",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#d59563"
-        }
-      ]
+        "featureType": "poi",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#d59563"
+            }
+        ]
     },
     {
-      "featureType": "poi.business",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
+        "featureType": "poi.business",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
     },
     {
-      "featureType": "poi.park",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#263c3f"
-        }
-      ]
+        "featureType": "poi.park",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#263c3f"
+            }
+        ]
     },
     {
-      "featureType": "poi.park",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#6b9a76"
-        }
-      ]
+        "featureType": "poi.park",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#6b9a76"
+            }
+        ]
     },
     {
-      "featureType": "road",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#38414e"
-        }
-      ]
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#38414e"
+            }
+        ]
     },
     {
-      "featureType": "road",
-      "elementType": "geometry.stroke",
-      "stylers": [
-        {
-          "color": "#212a37"
-        }
-      ]
+        "featureType": "road",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#212a37"
+            }
+        ]
     },
     {
-      "featureType": "road",
-      "elementType": "labels.icon",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
+        "featureType": "road",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
     },
     {
-      "featureType": "road",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#9ca5b3"
-        }
-      ]
+        "featureType": "road",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#9ca5b3"
+            }
+        ]
     },
     {
-      "featureType": "road.highway",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#746855"
-        }
-      ]
+        "featureType": "road.highway",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#746855"
+            }
+        ]
     },
     {
-      "featureType": "road.highway",
-      "elementType": "geometry.stroke",
-      "stylers": [
-        {
-          "color": "#1f2835"
-        }
-      ]
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#1f2835"
+            }
+        ]
     },
     {
-      "featureType": "road.highway",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#f3d19c"
-        }
-      ]
+        "featureType": "road.highway",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#f3d19c"
+            }
+        ]
     },
     {
-      "featureType": "road.local",
-      "elementType": "labels",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
+        "featureType": "road.local",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
     },
     {
-      "featureType": "transit",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
+        "featureType": "transit",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
     },
     {
-      "featureType": "transit",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#2f3948"
-        }
-      ]
+        "featureType": "transit",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#2f3948"
+            }
+        ]
     },
     {
-      "featureType": "transit.station",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#d59563"
-        }
-      ]
+        "featureType": "transit.station",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#d59563"
+            }
+        ]
     },
     {
-      "featureType": "water",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#17263c"
-        }
-      ]
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#17263c"
+            }
+        ]
     },
     {
-      "featureType": "water",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#515c6d"
-        }
-      ]
+        "featureType": "water",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#515c6d"
+            }
+        ]
     },
     {
-      "featureType": "water",
-      "elementType": "labels.text.stroke",
-      "stylers": [
-        {
-          "color": "#17263c"
-        }
-      ]
+        "featureType": "water",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#17263c"
+            }
+        ]
     }
-  ]
+]
 
-export default CommunityMap
+const mapStateToProps = ({ posts }) => {
+    return {
+        posts
+    }
+}
+
+export default connect(mapStateToProps)(CommunityMap)

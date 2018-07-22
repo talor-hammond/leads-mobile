@@ -24,14 +24,11 @@ export function addPost (post) {
 // Asynchronous; server-side actions; redux-thunk
 export function getPostsRequest () {
     return dispatch => {
-        console.log('Firing async...')
         request
         .get(baseURL)
         .then(res => { // wait for our request to the server to finish...
-            console.log('Server response-body: ', res.body)
             const posts = res.body 
             dispatch(getPosts(posts)) // ...then make a change client-side.
-            console.log('Firing client-side...')
         }) 
     }
 }
