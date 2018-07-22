@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { MapView } from 'expo'
 
 import {
+    Animated, // for our Animated.View inside each Marker
     View,
     StyleSheet
 } from 'react-native'
@@ -21,9 +22,10 @@ class CommunityMap extends Component {
                 {
                     id: 1,
                     title: 'My car broke down foo',
+                    category: 'Car troubles',
                     description: 'Can someone bring me jumper leads plz!',
                     latitude: 37.78825,
-                    longitude: -122.4324,
+                    longitude: -122.2324, // WE NEED SOME CUBA ST DATA
                     user_id: 2
                 }
             ]
@@ -41,13 +43,15 @@ class CommunityMap extends Component {
 
                 <MapView.Marker // marker at the user's current location.
                     coordinate={{
-                        latitude: region.latitude, 
+                        latitude: region.latitude,
                         longitude: region.longitude
                     }}
-                >
-                <View style={styles.radius}>
-                    <View style={styles.marker}></View>
-                </View>
+                    title='Hi there!'
+                    description='This is your current location :~)'
+                > 
+                    <View style={[styles.marker, styles.markerWrap]}> {/* Styling a particular marker; overrides the default */}
+                        <View style={styles.ring}></View>
+                    </View>
                 </MapView.Marker>
 
                 {
@@ -59,7 +63,13 @@ class CommunityMap extends Component {
                                     latitude: post.latitude,
                                     longitude: post.longitude
                                 }}
-                            />
+                                title={post.title}
+                                description={post.description}
+                            >
+                            <View style={[styles.otherMarker, styles.markerWrap]}>
+                                <View style={styles.otherRing}></View>
+                            </View>
+                            </MapView.Marker>
                         )
                     })
                 }
@@ -73,14 +83,39 @@ const styles = StyleSheet.create({
     map: {
         flex: 1
     },
+    markerWrap: {
+        alignItems: "center",
+        justifyContent: "center",
+    },
     marker: {
-        height: 20,
-        width: 20,
-        borderWidth: 3,
-        borderColor: 'white',
-        borderRadius: 20 / 2,
-        overflow: 'hidden',
-        backgroundColor: '#007AFF'
+        width: 8,
+        height: 8,
+        borderRadius: 4,
+        backgroundColor: "rgba(130,4,150, 0.9)",
+    },
+    ring: {
+        width: 24,
+        height: 24,
+        borderRadius: 12,
+        backgroundColor: "rgba(130,4,150, 0.3)",
+        position: "absolute",
+        borderWidth: 1,
+        borderColor: "rgba(130,4,150, 0.5)",
+    },
+    otherMarker: {
+        width: 8,
+        height: 8,
+        borderRadius: 4,
+        backgroundColor: "rgba(130,4,0, 0.9)"
+    },
+    otherRing: {
+        width: 24,
+        height: 24,
+        borderRadius: 12,
+        backgroundColor: "rgba(130,4,0, 0.3)",
+        position: "absolute",
+        borderWidth: 1,
+        borderColor: "rgba(130,4,0, 0.5)"
     }
 })
 
