@@ -114,7 +114,7 @@ class CommunityMap extends Component {
         } else {
             return (
                 <View style={styles.fetchingContainer}>
-                    <Text>Waiting for location data...</Text>
+                    <Text style={styles.fetchingText}>Waiting for location data...</Text>
                 </View>
             )
         }
@@ -125,6 +125,10 @@ const styles = StyleSheet.create({
     fetchingContainer: {
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    fetchingText: {
+        fontWeight: '700',
+        color: 'rgba(210,210,210,0.9)'
     },
     map: {
         flex: 1
