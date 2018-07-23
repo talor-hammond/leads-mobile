@@ -38,7 +38,11 @@ export async function get (key) {
 export async function set (key, value) {
   try {
     console.log('set')
-    await AsyncStorage.setItem(key, value)
+    if(value) {
+      await AsyncStorage.setItem(key, value)
+    } else {
+      await AsyncStorage.removeItem(key)
+    }
     console.log('setted')
     return value
   } catch (error) {
