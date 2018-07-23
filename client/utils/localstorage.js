@@ -20,17 +20,18 @@ import { AsyncStorage } from 'react-native'
 // }
 
 export async function get (key) {
-  return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ0YXl0YXkiLCJpYXQiOjE1MzIyOTg3NDYsImV4cCI6MTUzMjM4NTE0Nn0.h2ofNzffbeuugnIILSSRLX4Y-VyXAJvIfhkP4DgCQ7E"
+  // return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ0YXl0YXkiLCJpYXQiOjE1MzIyOTg3NDYsImV4cCI6MTUzMjM4NTE0Nn0.h2ofNzffbeuugnIILSSRLX4Y-VyXAJvIfhkP4DgCQ7E"
 
   try {
     const value = await AsyncStorage.getItem(key);
     return value
 
-    if (value != null) {
-      console.log(value)
-    }
+    // if (value != null) {
+      // console.log(value)
+    // }
   } catch (error) {
     //Error retrieving data
+    return null
   }
 }
 
