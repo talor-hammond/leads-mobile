@@ -13,6 +13,8 @@ import {
 // Our register modal:
 import Register from './Register'
 
+import { connect } from 'react-redux'
+
 class LoginForm extends React.Component {
     constructor(props) {
         super(props) 
@@ -31,6 +33,7 @@ class LoginForm extends React.Component {
 
     render() {
         const { navigation } = this.props
+        console.log(this.props.dispatch)
 
         return (
             <View style={styles.container}>
@@ -109,4 +112,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default LoginForm
+export default connect()(LoginForm)

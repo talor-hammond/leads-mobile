@@ -10,6 +10,9 @@ import reducers from './client/reducers/index'
 // Our root component; 'switches' on auth state?
 import { createRootNavigator } from './client/components/config/navigation'
 
+// auth / utils:
+import { isAuthenticated } from './client/utils/auth'
+
 let store = createStore(reducers, compose( // global object, which stores our different types of state.
   applyMiddleware(thunkMiddleware)
 ))
@@ -21,6 +24,12 @@ class Switch extends React.Component {
     this.state = {
       signedIn: false // tracking whether a user is signedIn; defaults to false
     }
+  }
+
+  componentDidMount() { // check if valid token stored when user launches app
+    // this.setState({
+    //   signedIn: isAuthenticated()
+    // })
   }
 
   render() {

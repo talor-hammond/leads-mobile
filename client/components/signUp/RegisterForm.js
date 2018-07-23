@@ -10,13 +10,17 @@ import {
     Alert
 } from 'react-native'
 
+import { registerUserRequest } from '../../actions/register'
+
+import { connect } from 'react-redux'
+
 class RegisterForm extends React.Component {
 
     super(props) {
         constructor(props)
 
         this.state = {
-            username: '',
+            user_name: '',
             password: '',
             confirmedPassword: '',
             failedRegister: false
@@ -26,10 +30,14 @@ class RegisterForm extends React.Component {
     }
 
     register() {
-        const { password, confirmedPassword } = this.state
+        const { user_name, password, confirmedPassword } = this.state
 
         if (password === confirmedPassword) {
             // let the user register...
+
+
+            this.props.dispatch(registerUserRequest({user_name, password}))
+
             console.log('Success!')
         } else {
             Alert.alert(
@@ -73,7 +81,7 @@ class RegisterForm extends React.Component {
                     onSubmitEditing={() => this.passwordInput.focus()}
                     ref={(input) => this.usernameInput = input}
                     style={styles.input}
-                    onChangeText={(text) => this.setState({username: text})}
+                    onChangeText={(text) => this.setState({user_name: text})}
                 />
                 <TextInput
                     placeholder="password"
@@ -137,4 +145,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default RegisterForm
+export default connect()(RegisterForm)
