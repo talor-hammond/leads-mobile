@@ -20,15 +20,20 @@ class LoginForm extends React.Component {
         super(props) 
 
         this.state = {
-            username: '',
+            user_name: '',
             password: ''
         }
+
+        this.login = this.login.bind(this)
     }
 
-    login() {
+    login(e) {
         // check if user exists w matching user_name + hash
         // setState of 'signedIn' in App.js to true? -- redirect to our main stacknav
         console.log('Hi')
+        e.preventDefault()
+        const { user_name, password } = this.state
+        this.props.dispatch()
     }
 
     render() {
@@ -56,7 +61,7 @@ class LoginForm extends React.Component {
                     returnKeyType="next"
                     onSubmitEditing={() => this.passwordInput.focus()}
                     style={styles.input}
-                    onChangeText={(username) => this.setState({username})}
+                    onChangeText={(user_name) => this.setState({user_name})}
                 />
                 <TextInput
                     placeholder="password"
