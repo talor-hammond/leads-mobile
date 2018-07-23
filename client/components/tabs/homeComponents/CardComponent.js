@@ -42,7 +42,7 @@ class CardComponent extends Component {
                     </Body>
                 </CardItem>
                 <CardItem>
-                    <TouchableOpacity onPress={() => this.openGps(lat, long, address)}>
+                    <TouchableOpacity onPress={() => this.openGps(address)}>
                         <Text style={styles.address}>{address}</Text>
                     </TouchableOpacity>
                 </CardItem>
