@@ -39,12 +39,12 @@ class Home extends Component {
     }
     
     render() {
-        console.log(this.state)
-        console.log(this.state.addPostVisible)
+        const { addPostVisible } = this.state
+
         return (
             <React.Fragment>
             
-                <Modal animationType='slide' visible={this.state.addPostVisible}>
+                <Modal animationType='slide' visible={addPostVisible}>
                     <AddPost />
                 </Modal>
 
