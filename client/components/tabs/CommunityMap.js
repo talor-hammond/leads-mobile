@@ -8,7 +8,8 @@ import { getPostsRequest } from '../../actions/posts'
 import {
     Animated, // for our Animated.View inside each Marker
     View,
-    StyleSheet
+    StyleSheet,
+    Text
 } from 'react-native'
 
 class CommunityMap extends Component {
@@ -16,9 +17,10 @@ class CommunityMap extends Component {
         super(props)
 
         this.state = {
+            isGettingRegion: true,
             region: {  // TODO: feed in phones geolocation from state.
-                latitude: -41.297292,
-                longitude: 174.774144,
+                latitude: 0,
+                longitude: 0,
                 latitudeDelta: 0.025, // our 'zoom' level! 0.025 == a few city blocks
                 longitudeDelta: 0.025
             },
@@ -26,80 +28,104 @@ class CommunityMap extends Component {
         }
     }
 
-    _getLocationAsync = async () => {
-        const { status } = await Expo.Permissions.askAsync(Expo.Permissions.LOCATION);
-
-        if (status === 'granted') {
-            const location = await Expo.Location.getCurrentPositionAsync({
-                enableHighAccuracy: true,
-            });
-            console.log(location)
-        }
-    }
-
     componentWillMount() {
-        // Location.getCurrentPositionAsync({ enableHighAccuracy: true })
-    }
-    
-    componentDidMount() {
-        navigator.geolocation.getCurrentPosition(position => {
-            console.log(position)
-        })
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                console.log(position.coords)
+                var latitude = parseFloat(position.coords.latitude)
+                var longitude = parseFloat(position.coords.longitude)
+                var latitudeDelta = 0.025
+                var longitudeDelta = 0.025
+
+                const initialRegion = {
+                    latitude,
+                    longitude,
+                    latitudeDelta,
+                    longitudeDelta
+                }
+
+                console.log('Initial region: ', initialRegion)
+
+                this.setState({
+                    region: initialRegion,
+                    isGettingRegion: false
+                })
+            },
+            (error) => {
+                console.log(error)
+            },
+            { enableHighAccuracy: false, timeout: 20000, maximumAge: 10000 }
+        )
+
         this.props.dispatch(getPostsRequest())
     }
 
     render() {
 
-        const { region } = this.state // pulling from component's state...
+        const { region, isGettingRegion } = this.state // pulling from component's state...
         const { posts } = this.props // pulling from redux state...
+        console.log('Region in state: ', region)
 
-        return (
-            <MapView
-                style={styles.map}
-                // provider={MapView.PROVIDER_GOOGLE}
-                // customMapStyle={generatedMapStyle} ...custom mapStyles are causing issues with custom marker style
-                initialRegion={region}
-            >
+        if (!isGettingRegion) {
 
-                <MapView.Marker // marker at the user's current location.
-                    coordinate={{
-                        latitude: region.latitude,
-                        longitude: region.longitude
-                    }}
-                    title='Hi there!'
-                    description='This is your current location :~)'
+            return (
+                <MapView
+                    style={styles.map}
+                    // provider={MapView.PROVIDER_GOOGLE}
+                    // customMapStyle={generatedMapStyle} ...custom mapStyles are causing issues with custom marker style
+                    initialRegion={region}
                 >
-                    <Animated.View style={[styles.marker, styles.markerWrap]}> {/* Styling a particular marker; overrides the default */}
-                        <Animated.View style={styles.ring}></Animated.View>
-                    </Animated.View>
-                </MapView.Marker>
 
-                {
-                    posts.map(post => {
-                        return (
-                            <MapView.Marker
-                                key={post.post_id}
-                                coordinate={{
-                                    latitude: Number(post.lat),
-                                    longitude: Number(post.long)
-                                }}
-                                title={post.title}
-                                description={post.description}
-                            >
-                                <View style={[styles.otherMarker, styles.markerWrap]}>
-                                    <View style={styles.otherRing}></View>
-                                </View>
-                            </MapView.Marker>
-                        )
-                    })
-                }
+                    <MapView.Marker // marker at the user's current location.
+                        coordinate={{
+                            latitude: region.latitude,
+                            longitude: region.longitude
+                        }}
+                        title='Hi there!'
+                        description='This is your current location :~)'
+                    >
+                        <Animated.View style={[styles.marker, styles.markerWrap]}> {/* Styling a particular marker; overrides the default */}
+                            <Animated.View style={styles.ring}></Animated.View>
+                        </Animated.View>
+                    </MapView.Marker>
 
-            </MapView>
-        )
+                    {
+                        posts.map(post => {
+                            return (
+                                <MapView.Marker
+                                    key={post.post_id}
+                                    coordinate={{
+                                        latitude: Number(post.lat),
+                                        longitude: Number(post.long)
+                                    }}
+                                    title={post.title}
+                                    description={post.description}
+                                >
+                                    <View style={[styles.otherMarker, styles.markerWrap]}>
+                                        <View style={styles.otherRing}></View>
+                                    </View>
+                                </MapView.Marker>
+                            )
+                        })
+                    }
+
+                </MapView>
+            )
+        } else {
+            return (
+                <View style={styles.fetchingContainer}>
+                    <Text>Waiting for location data...</Text>
+                </View>
+            )
+        }
     }
 }
 
 const styles = StyleSheet.create({
+    fetchingContainer: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     map: {
         flex: 1
     },
