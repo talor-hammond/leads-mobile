@@ -1,5 +1,5 @@
 import request from '../utils/api'
-import { saveUserToken } from '../utils/auth'
+import { saveUserToken, getUserTokenInfo } from '../utils/auth'
 
 function requestLogin () {
   return {
@@ -29,7 +29,7 @@ function loginError (message) {
 
 export function loginUser (creds) {
   return dispatch => {
-    dispatch(requestLogin(creds))
+    dispatch(requestLogin(creds)) // ??? creds?
     return request('post', 'auth/login', creds)
       .then((response) => {
         if (response.status === 403) {
@@ -42,5 +42,14 @@ export function loginUser (creds) {
           // document.location = "/#/"
         }
       }).catch(err => alert("Try Again!"))
+  }
+}
+
+export function checkUserToken() {
+  return dispatch => {
+    return getUserTokenInfo().then((userInfo) => {
+      console.log(userInfo)
+      if (userInfo) dispatch(receiveLogin(userInfo))
+    })
   }
 }

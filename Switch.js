@@ -12,6 +12,7 @@ import { createRootNavigator } from './client/components/config/navigation'
 
 // auth / utils:
 import { isAuthenticated } from './client/utils/auth'
+import { checkUserToken } from './client/actions/login'
 
 let store = createStore(reducers, compose( // global object, which stores our different types of state.
   applyMiddleware(thunkMiddleware)
@@ -21,20 +22,25 @@ class Switch extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      signedIn: false // tracking whether a user is signedIn; defaults to false
-    }
+    // this.state = {
+    //   signedIn: false // tracking whether a user is signedIn; defaults to false
+    // }
   }
 
   componentDidMount() { // check if valid token stored when user launches app
     // this.setState({
     //   signedIn: isAuthenticated()
     // })
+    this.props.dispatch(checkUserToken())
   }
 
   render() {
-    const { signedIn } = this.state // pulling from state...
-    const Layout = createRootNavigator(signedIn)
+    console.log(this.props.auth)
+    const authenticated = this.props.auth.isAuthenticated()
+
+    const Layout = createRootNavigator(authenticated)
+    // const Layout = createRootNavigator(this.props.auth.isAuthenticated())
+
 
     return (
         <Layout />

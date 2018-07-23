@@ -10,9 +10,7 @@ import {
     Modal
 } from 'react-native'
 
-// Our register modal:
-import Register from './Register'
-
+import { loginUser } from '../../actions/login'
 import { connect } from 'react-redux'
 
 class LoginForm extends React.Component {
@@ -27,13 +25,18 @@ class LoginForm extends React.Component {
         this.login = this.login.bind(this)
     }
 
-    login(e) {
+    login() {
         // check if user exists w matching user_name + hash
         // setState of 'signedIn' in App.js to true? -- redirect to our main stacknav
         console.log('Hi')
-        e.preventDefault()
         const { user_name, password } = this.state
-        this.props.dispatch()
+
+        const user = {
+            user_name,
+            password
+        }
+
+        this.props.dispatch(loginUser(user))
     }
 
     render() {

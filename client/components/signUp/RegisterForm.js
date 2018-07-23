@@ -34,11 +34,7 @@ class RegisterForm extends React.Component {
 
         if (password === confirmedPassword) {
             // let the user register...
-
-
             this.props.dispatch(registerUserRequest({user_name, password}))
-
-            console.log('Success!')
         } else {
             Alert.alert(
                 'Failed to register',
