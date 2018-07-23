@@ -27,26 +27,24 @@ class Home extends Component {
 
         this.toggleModal = this.toggleModal.bind(this)
     }
-
+    
     componentDidMount() {
         this.props.dispatch(getPostsRequest())
     }
-
+    
     toggleModal() {
         this.setState({
-            addPostVisible: !addPostVisible
+            addPostVisible: !this.state.addPostVisible
         })
     }
-
+    
     render() {
-        const { addPostVisible } = this.state
         console.log(this.state)
-        console.log(addPostVisible)
-
+        console.log(this.state.addPostVisible)
         return (
             <React.Fragment>
             
-                <Modal animation='slide' visible={ this.state.addPostVisible }>
+                <Modal animationType='slide' visible={this.state.addPostVisible}>
                     <AddPost />
                 </Modal>
 
