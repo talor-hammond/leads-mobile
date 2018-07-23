@@ -19,7 +19,7 @@ export default class App extends React.Component {
     super(props)
 
     this.state = {
-      signedIn: false // tracking whether a user is signedIn; defaults to false
+      signedIn: true // tracking whether a user is signedIn; defaults to false
     }
   }
 

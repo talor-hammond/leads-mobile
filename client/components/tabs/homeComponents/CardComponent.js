@@ -13,7 +13,7 @@ import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'nati
 class CardComponent extends Component {
     openGps(lat, long) {
         console.log(lat, long)
-        Linking.openURL(`maps://app?saddr=100+101&daddr=${lat}+${long}`)
+        Linking.openURL(`maps://app?daddr=${lat}+${long}`)
     }
 
     render() {
