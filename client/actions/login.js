@@ -30,6 +30,9 @@ function loginError (message) {
 export function loginUser (creds) {
   return dispatch => {
     dispatch(requestLogin(creds)) // ??? creds?
+    // return request
+    //   .post('/auth/login')
+    //   .send(creds)
     return request('post', 'auth/login', creds)
       .then((response) => {
         if (response.status === 403) {

@@ -7,7 +7,7 @@ import {
     TextInput,
     TouchableOpacity,
     StatusBar,
-    Modal
+    Linking
 } from 'react-native'
 
 import { loginUser } from '../../actions/login'
@@ -26,9 +26,6 @@ class LoginForm extends React.Component {
     }
 
     login() {
-        // check if user exists w matching user_name + hash
-        // setState of 'signedIn' in App.js to true? -- redirect to our main stacknav
-        console.log('Hi')
         const { user_name, password } = this.state
 
         const user = {
@@ -36,12 +33,17 @@ class LoginForm extends React.Component {
             password
         }
 
+        console.log(user)
+
         this.props.dispatch(loginUser(user))
+    }
+
+    register() {
+        Linking.openURL('https://jumperlead.herokuapp.com/#/register')
     }
 
     render() {
         const { navigation } = this.props
-        console.log(this.props.dispatch)
 
         return (
             <View style={styles.container}>
@@ -50,9 +52,9 @@ class LoginForm extends React.Component {
                 />
 
                 <View style={styles.helpTextContainer}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+                    <TouchableOpacity onPress={() => this.register()}>
                         <Text>Haven't registered yet? <Text style={styles.helpText}>Sign up here</Text></Text>
-                    </TouchableOpacity> {/* TODO: Make the sign up here text clickable! Take to Register component */}
+                    </TouchableOpacity>
                 </View>
 
                 <TextInput

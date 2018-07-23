@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import {
     View,
@@ -6,7 +7,14 @@ import {
     StyleSheet
 } from 'react-native'
 
+import { logoutUser } from '../../actions/logout'
+
 class Messages extends Component {
+
+    componentDidMount() {
+        this.props.dispatch(logoutUser())
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -25,4 +33,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Messages
+export default connect()(Messages)

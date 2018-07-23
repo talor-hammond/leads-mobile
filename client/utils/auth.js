@@ -36,5 +36,5 @@ export function getUserTokenInfo () {
 }
 
 export function removeUser () {
-  set('token', null)
+  return set('token', null)
 }
