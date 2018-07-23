@@ -3,8 +3,12 @@ import React, { Component } from 'react'
 import {
     View,
     Text,
-    StyleSheet
+    TouchableOpacity,
+    StyleSheet,
+    Modal
 } from 'react-native'
+
+import AddPost from './AddPost'
 
 // Redux:
 import { connect } from 'react-redux'
@@ -16,56 +20,86 @@ import { Container, Content } from 'native-base';
 class Home extends Component {
     constructor(props) {
         super(props)
+
+        this.state = {
+            addPostVisible: false
+        }
+
+        this.toggleModal = this.toggleModal.bind(this)
     }
 
     componentDidMount() {
         this.props.dispatch(getPostsRequest())
     }
 
+    toggleModal() {
+        this.setState({
+            addPostVisible: !addPostVisible
+        })
+    }
+
     render() {
+        const { addPostVisible } = this.state
+        console.log(this.state)
+        console.log(addPostVisible)
+
         return (
-            <Container style={styles.container}>
-                <Content>
-                    {
-                        this.props.posts.map((post, i) => {
-                            return (
-                                <CardComponent
-                                    key={i}
-                                    username={post.username}
-                                    topic={post.topic}
-                                    title={post.title}
-                                    description={post.description}
-                                    address={post.address}
-                                    lat={post.lat}
-                                    long={post.long}
-                                />
-                            )
-                        })
-                    }
-                    {/* { if (this.props.posts.length == 0) {
+            <React.Fragment>
+            
+                <Modal animation='slide' visible={ this.state.addPostVisible }>
+                    <AddPost />
+                </Modal>
+
+
+                <Container style={styles.container}>
+                    <Content>
+                        {
+                            this.props.posts.map((post, i) => {
+                                return (
+                                    <CardComponent
+                                        key={i}
+                                        username={post.username}
+                                        topic={post.topic}
+                                        title={post.title}
+                                        description={post.description}
+                                        address={post.address}
+                                        lat={post.lat}
+                                        long={post.long}
+                                    />
+                                )
+                            })
+                        }
+                        {/* { if (this.props.posts.length == 0) {
                             return (
                                 <View style={styles.centered}>
-                                    <Text style={styles.errorText}>No posts found...</Text>
+                                <Text style={styles.errorText}>No posts found...</Text>
                                 </View>
                             )
                         } else {
                             this.props.posts.map(post => {
                                 return (
                                     <CardComponent
-                                        key={post.id}
-                                        username={post.username}
-                                        topic={post.topic}
-                                        title={post.title}
-                                        description={post.description}
-                                        // address={post.address}
+                                    key={post.id}
+                                    username={post.username}
+                                    topic={post.topic}
+                                    title={post.title}
+                                    description={post.description}
+                                    // address={post.address}
                                     />
                                 )
                             })
                         }
                     } */}
+                    </Content>
+                </Container>
 
-                </Content>
-            </Container>
+                    <TouchableOpacity onPress={() => this.toggleModal()}>
+                        <View style={styles.buttonContainer}>
+                            <Text style={styles.buttonText}>Add a lead</Text>
+                        </View>
+                    </TouchableOpacity>
+
+            </React.Fragment>
         )
     }
 }
@@ -83,7 +117,22 @@ const styles = StyleSheet.create({
     },
     errorText: {
         fontSize: 20
-    }
+    },
+    // buttonContainer: {
+    //     height: 40,
+    //     width: 80,
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //     backgroundColor: 'rgba(210,210,210,0.8)',
+    //     marginVertical: 10,
+    //     paddingHorizontal: 5,
+    //     borderRadius: 10,
+    //     borderWidth: 1,
+    //     borderColor: 'rgba(0,0,0,.5)'
+    // },
+    // buttonText: {
+    //     fontWeight: '500'
+    // }
 })
 
 const mapStateToProps = ({ posts }) => {
