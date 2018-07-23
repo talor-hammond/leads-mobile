@@ -4,7 +4,7 @@ import React from 'react';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-
+import Profile from './client/components/tabs/Profile'
 import reducers from './client/reducers/index'
 
 // Our root component; 'switches' on auth state?
@@ -25,11 +25,11 @@ export default class App extends React.Component {
 
   render() {
     const { signedIn } = this.state // pulling from state...
-    const App = createRootNavigator(signedIn)
+    const Layout = createRootNavigator(signedIn)
 
     return (
       <Provider store={store}>
-        <App />
+        <Layout />
       </Provider>
     )
   }
