@@ -14,7 +14,7 @@ class UserPost extends Component {
     render () {
 
         return (
-            <View styles={style.post}>
+            <View style={styles.post}>
                 <Text>We're fucked</Text>
 
                 </View>
@@ -26,7 +26,8 @@ class UserPost extends Component {
 const styles = StyleSheet.create({
     post: {
         height: 120,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        marginBottom: 16
     }
 
 })
