@@ -11,9 +11,10 @@ import {
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 
 class CardComponent extends Component {
-    openGps(lat, long) {
-        console.log(lat, long)
-        Linking.openURL(`maps://app?daddr=${lat}+${long}`)
+    openGps(lat, long, address) {
+        let parsedAddress = address.split(' ').join('+') // parsing the address into something we can feed to google maps url
+        console.log(lat, long, parsedAddress)
+        Linking.openURL(`maps://app?q=${parsedAddress}`)
     }
 
     render() {
@@ -41,7 +42,7 @@ class CardComponent extends Component {
                     </Body>
                 </CardItem>
                 <CardItem>
-                    <TouchableOpacity onPress={() => this.openGps(lat, long)}>
+                    <TouchableOpacity onPress={() => this.openGps(lat, long, address)}>
                         <Text style={styles.address}>{address}</Text>
                     </TouchableOpacity>
                 </CardItem>
