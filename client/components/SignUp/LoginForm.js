@@ -51,7 +51,7 @@ class LoginForm extends React.Component {
 
                 <View style={styles.helpTextContainer}>
                     <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                        <Text>Haven't registered yet?<Text style={styles.helpText}>Sign up here</Text></Text>
+                        <Text>Haven't registered yet? <Text style={styles.helpText}>Sign up here</Text></Text>
                     </TouchableOpacity> {/* TODO: Make the sign up here text clickable! Take to Register component */}
                 </View>
 
