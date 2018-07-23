@@ -18,7 +18,7 @@ class CardComponent extends Component {
     }
 
     render() {
-        const { username, topic, title, description, address, lat, long } = this.props // need an address!
+        const { username, topic, title, description, address, lat, long, post_id } = this.props // need an address!
 
         return (
             <Card style={styles.cardContainer}>
@@ -28,7 +28,7 @@ class CardComponent extends Component {
                         <Text style={styles.username}>{username}</Text>
                     </Left>
                     <Right>
-                        <Text style={styles.topic}>{topic}</Text>
+                        <Text style={styles.openFullPostText}></Text>
                     </Right>
                 </CardItem>
                 <CardItem>
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 8,
         fontSize: 20
     },
-    topic: {
+    openFullPostText: {
         fontStyle: 'italic'
     },
     titleContainer: {
