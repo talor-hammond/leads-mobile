@@ -11,9 +11,9 @@ import {
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 
 class CardComponent extends Component {
-    openGps(lat, long, address) {
-        let parsedAddress = address.split(' ').join('+') // parsing the address into something we can feed to google maps url
-        console.log(lat, long, parsedAddress)
+    openGps(address) {
+        const parsedAddress = address.split(' ').join('+') // parsing the address into something we can feed to google maps url
+        
         Linking.openURL(`maps://app?q=${parsedAddress}`)
     }
 
