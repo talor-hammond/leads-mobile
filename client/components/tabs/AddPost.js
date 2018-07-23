@@ -17,7 +17,6 @@ class AddPost extends Component {
                 <TextInput
                     placeholder="Post title"
                     placeholderTextColor='#FFF'
-                    keyboardType="message"
                     autoCapitalize="none"
                     autoCorrect={false}
                     returnKeyType="next"
@@ -29,17 +28,17 @@ class AddPost extends Component {
                 <TextInput
                     placeholder="Enter your message here"
                     placeholderTextColor='#FFF'
-                    keyboardType="message"
                     autoCapitalize="none"
                     autoCorrect={false}
                     returnKeyType="next"
+                    ref={(input) => this.messageInput = input}
                     style={styles.input}
                 />
 
                 <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.buttonContainer}>
                     <Text style={styles.buttonText}>Submit</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Home')} style={[styles.buttonContainer, styles.backButton]}>
+                <TouchableOpacity onPress={() => this.props.toggleModal()} style={[styles.buttonContainer, styles.backButton]}>
                     <Text style={styles.buttonText}>Cancel</Text>
                 </TouchableOpacity>
 
@@ -51,7 +50,7 @@ class AddPost extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'green',
+        backgroundColor: 'rgba(200, 200, 200, 0.1)',
         alignItems: 'center',
         justifyContent: 'center'
     },

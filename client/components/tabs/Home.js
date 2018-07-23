@@ -45,9 +45,8 @@ class Home extends Component {
             <React.Fragment>
             
                 <Modal animationType='slide' visible={addPostVisible}>
-                    <AddPost />
+                    <AddPost toggleModal={this.toggleModal}/>
                 </Modal>
-
 
                 <Container style={styles.container}>
                     <Content>
