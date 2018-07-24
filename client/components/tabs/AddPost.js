@@ -19,26 +19,28 @@ class AddPost extends Component {
         this.state = {
             title: '',
             description: '',
-            address: '',
-            user_id: this.props.auth.user.user_name
+            address: ''
+            // user_id: this.props.users[0].id
         }
     }
     
     componentDidMount() {
         const username = this.props.auth.user.user_name
-        this.props.dispatch(getUserRequest(username))
         console.log(this.props.auth)
     }
 
     submit() {
-        const { title, description, address, user_id } = this.state
+        const { title, description, address } = this.state
 
         const post = {
             title,
             description,
             address,
-            user_id
+            user_id: this.props.users[0].id
+            // username: this.props.users[0].user_name
         }
+
+        console.log(post)
 
         this.props.dispatch(addPostRequest(post))
 
@@ -46,6 +48,9 @@ class AddPost extends Component {
     }
 
     render() {
+
+        console.log(this.props)
+
         return (
             <View style={styles.container}>
                 <View style={styles.titleContainer}>
@@ -89,7 +94,7 @@ class AddPost extends Component {
                     />
 
                     <View style={styles.bothButtons}>
-                        <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.blueButton}>
+                        <TouchableOpacity onPress={() => this.submit()} style={styles.blueButton}>
                             <Text style={styles.buttonText}>Submit</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.props.toggleModal()} style={styles.redButton}>
@@ -161,9 +166,10 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = ({auth}) => {
+const mapStateToProps = ({auth, users}) => {
     return {
-        auth
+        auth,
+        users
     }
 }
 

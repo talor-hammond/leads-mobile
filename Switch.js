@@ -35,7 +35,6 @@ class Switch extends React.Component {
   }
 
   render() {
-    console.log(this.props.auth)
     const authenticated = this.props.auth.isAuthenticated
 
     const Layout = createRootNavigator(authenticated)

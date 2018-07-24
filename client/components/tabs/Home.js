@@ -14,23 +14,28 @@ import FullPost from './homeComponents/FullPost'
 // Redux:
 import { connect } from 'react-redux'
 import { getPostsRequest } from '../../actions/posts'
+import { getUserRequest } from '../../actions/users'
+
 
 import CardComponent from './homeComponents/CardComponent'
-import { Container, Content } from 'native-base';
+import { Container, Content } from 'native-base'
 
 class Home extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            addPostVisible: false
+            addPostVisible: true
         }
 
         this.toggleModal = this.toggleModal.bind(this)
     }
     
     componentDidMount() {
-        this.props.dispatch(getPostsRequest())
+        const { dispatch, auth } = this.props
+
+        dispatch(getUserRequest(auth.user.user_name))
+        dispatch(getPostsRequest())
     }
     
     toggleModal() {
@@ -40,9 +45,8 @@ class Home extends Component {
     }
     
     render() {
-        console.log(this.props)
-
         const { addPostVisible } = this.state
+        console.log(this.props.posts)
 
         return (
             <React.Fragment>
@@ -67,6 +71,7 @@ class Home extends Component {
                                             address={post.address}
                                             lat={post.lat}
                                             long={post.long}
+                                            post_id={post.post_id}
                                             togglePostModal={this.togglePostModal}
                                         />
 
@@ -140,9 +145,11 @@ const styles = StyleSheet.create({
     // }
 })
 
-const mapStateToProps = ({ posts }) => {
+const mapStateToProps = (props) => {
     return {
-        posts
+        posts: props.posts,
+        auth: props.auth,
+        users: props.users
     }
 }
 

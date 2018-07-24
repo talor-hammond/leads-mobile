@@ -7,7 +7,7 @@ export default function posts(state = [], action) {
         case GET_POSTS:
             return [...action.posts]
         case ADD_POST:
-            return [...newState, action.post] // spread everything out from our current state, as well as our added post into an array   
+            return [...newState] // spread everything out from our current state, as well as our added post into an array   
         case GET_POST_BY_POST_ID:
             return [...action.post]
         case GET_POSTS_BY_USER_ID:
