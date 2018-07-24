@@ -22,9 +22,9 @@ class FullPost extends Component {
         super(props)
 
         this.state = {
-            isFetchingUserId: true,
             comments: this.props.comments,
             content: '',
+            user_id: this.props.users[0].id
             post_id: this.props.post_id
         }
     }
@@ -33,17 +33,16 @@ class FullPost extends Component {
         const {post_id, dispatch} = this.props
 
         dispatch(getCommentsRequest(post_id))
-        dispatch(getUserRequest(this.props.auth.user.user_name))
     }
     
     addComment() {
-        const { content, post_id } = this.state
+        const { content, user_id, post_id } = this.state
         const { dispatch } = this.props
 
         const newComment = {
             content,
-            post_id,
-            user_id: this.props.users[0].id
+            user_id,
+            post_id
         }
 
         console.log(newComment)
@@ -52,7 +51,7 @@ class FullPost extends Component {
     }
 
     render() {
-        // console.log(this.props)
+        console.log(this.props)
 
         const { title, description, address } = this.props
         return (
