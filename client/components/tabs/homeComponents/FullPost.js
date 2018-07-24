@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     },
     commentButton: {
         flex: 1,
-        backgroundColor: 'grey',
+        backgroundColor: 'rgba(210,210,210,0.8)',
         borderRadius: 4
     },
     buttonText: {
