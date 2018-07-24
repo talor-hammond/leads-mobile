@@ -105,7 +105,7 @@ class Home extends Component {
 
                     <TouchableOpacity onPress={() => this.toggleModal()}>
                         <View style={styles.buttonContainer}>
-                            <Text style={styles.buttonText}>Add a lead</Text>
+                            <Text style={styles.buttonText}>+</Text>
                         </View>
                     </TouchableOpacity>
 
@@ -128,6 +128,22 @@ const styles = StyleSheet.create({
     errorText: {
         fontSize: 20
     },
+    buttonContainer: {
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 40,
+        width: 40,
+        borderRadius: 40 / 2,
+        bottom:20,
+        right:20,
+        backgroundColor: 'rgba(100, 200, 80, 1)',
+        borderWidth: 1
+    },
+    buttonText: {
+        fontSize: 20,
+        fontWeight: '900'
+    }
     // buttonContainer: {
     //     height: 40,
     //     width: 80,

@@ -80,7 +80,8 @@ export const SignedIn = createStackNavigator({
                 backgroundColor: '#A9EEE6'
             },
             titleStyle: {
-                color: '#fefefe'
+                color: '#fefefe',
+                fontFamily: 'American Typewriter'
             }
         }
     }
