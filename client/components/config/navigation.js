@@ -75,7 +75,13 @@ export const SignedIn = createStackNavigator({
     SignedInTabs: {
         screen: SignedInTabs,
         navigationOptions: {
-            title: 'leads'
+            title: 'leads',
+            headerStyle: {
+                backgroundColor: '#A9EEE6'
+            },
+            titleStyle: {
+                color: '#fefefe'
+            }
         }
     }
 })
