@@ -7,26 +7,39 @@ import {
     TextInput,
     TouchableOpacity,
     StatusBar,
-    Modal
+    Linking
 } from 'react-native'
 
-// Our register modal:
-import Register from './Register'
+import { loginUser } from '../../actions/login'
+import { connect } from 'react-redux'
 
 class LoginForm extends React.Component {
     constructor(props) {
         super(props) 
 
         this.state = {
-            username: '',
+            user_name: '',
             password: ''
         }
+
+        this.login = this.login.bind(this)
     }
 
     login() {
-        // check if user exists w matching user_name + hash
-        // setState of 'signedIn' in App.js to true? -- redirect to our main stacknav
-        console.log('Hi')
+        const { user_name, password } = this.state
+
+        const user = {
+            user_name,
+            password
+        }
+
+        console.log(user)
+
+        this.props.dispatch(loginUser(user))
+    }
+
+    register() {
+        Linking.openURL('https://jumperlead.herokuapp.com/#/register')
     }
 
     render() {
@@ -39,9 +52,9 @@ class LoginForm extends React.Component {
                 />
 
                 <View style={styles.helpTextContainer}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+                    <TouchableOpacity onPress={() => this.register()}>
                         <Text>Haven't registered yet? <Text style={styles.helpText}>Sign up here</Text></Text>
-                    </TouchableOpacity> {/* TODO: Make the sign up here text clickable! Take to Register component */}
+                    </TouchableOpacity>
                 </View>
 
                 <TextInput
@@ -53,7 +66,7 @@ class LoginForm extends React.Component {
                     returnKeyType="next"
                     onSubmitEditing={() => this.passwordInput.focus()}
                     style={styles.input}
-                    onChangeText={(username) => this.setState({username})}
+                    onChangeText={(user_name) => this.setState({user_name})}
                 />
                 <TextInput
                     placeholder="password"
@@ -109,4 +122,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default LoginForm
+export default connect()(LoginForm)

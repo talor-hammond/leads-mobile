@@ -11,13 +11,14 @@ import {
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 
 class CardComponent extends Component {
-    openGps(lat, long) {
-        console.log(lat, long)
-        Linking.openURL(`maps://app?daddr=${lat}+${long}`)
+    openGps(address) {
+        const parsedAddress = address.split(' ').join('+') // parsing the address into something we can feed to google maps url
+        
+        Linking.openURL(`maps://app?q=${parsedAddress}`)
     }
 
     render() {
-        const { username, topic, title, description, address, lat, long } = this.props // need an address!
+        const { username, topic, title, description, address, lat, long, post_id } = this.props // need an address!
 
         return (
             <Card style={styles.cardContainer}>
@@ -27,7 +28,7 @@ class CardComponent extends Component {
                         <Text style={styles.username}>{username}</Text>
                     </Left>
                     <Right>
-                        <Text style={styles.topic}>{topic}</Text>
+                        <Text style={styles.openFullPostText}></Text>
                     </Right>
                 </CardItem>
                 <CardItem>
@@ -41,7 +42,7 @@ class CardComponent extends Component {
                     </Body>
                 </CardItem>
                 <CardItem>
-                    <TouchableOpacity onPress={() => this.openGps(lat, long)}>
+                    <TouchableOpacity onPress={() => this.openGps(address)}>
                         <Text style={styles.address}>{address}</Text>
                     </TouchableOpacity>
                 </CardItem>
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 8,
         fontSize: 20
     },
-    topic: {
+    openFullPostText: {
         fontStyle: 'italic'
     },
     titleContainer: {

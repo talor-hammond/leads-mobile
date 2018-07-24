@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
         height: 135
     },
     formContainer: {
-        flex: 1
+        flex: 1,
+        marginBottom: 215
     },
     title: {
         color: '#FFF',
