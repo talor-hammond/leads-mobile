@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 
 import AddPost from './AddPost'
+import FullPost from './homeComponents/FullPost'
 
 // Redux:
 import { connect } from 'react-redux'
@@ -22,10 +23,12 @@ class Home extends Component {
         super(props)
 
         this.state = {
-            addPostVisible: false
+            addPostVisible: false,
+            fullPostVisible: true
         }
 
         this.toggleModal = this.toggleModal.bind(this)
+        this.togglePostModal = this.togglePostModal.bind(this)
     }
     
     componentDidMount() {
@@ -37,15 +40,25 @@ class Home extends Component {
             addPostVisible: !this.state.addPostVisible
         })
     }
+
+    togglePostModal() {
+        this.setState({
+            fullPostVisible: !this.state.fullPostVisible
+        })
+    }
     
     render() {
-        const { addPostVisible } = this.state
+        const { addPostVisible, fullPostVisible } = this.state
 
         return (
             <React.Fragment>
             
                 <Modal animationType='slide' visible={addPostVisible}>
-                    <AddPost toggleModal={this.toggleModal}/>
+                    <AddPost toggleModal={this.toggleModal} />
+                </Modal>
+
+                <Modal animationType='slide' visible={fullPostVisible}>
+                    <FullPost togglePostModal={this.togglePostModal} />
                 </Modal>
 
                 <Container style={styles.container}>
