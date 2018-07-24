@@ -11,7 +11,7 @@ import {
     ScrollView
 } from 'react-native'
 
-import UserPost from './profileComponents/UserPost'
+import UserPost from './ProfileComponents/UserPost'
 
 import { getPostsRequest } from '../../actions/posts'
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'

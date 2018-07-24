@@ -6,7 +6,8 @@ import {
     StyleSheet,
     TextInput,
     TouchableOpacity,
-    Picker
+    Picker,
+    ScrollView
 } from 'react-native'
 
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
@@ -20,22 +21,34 @@ class FullPost extends Component {
         const { username, topic, title, description, address, lat, long } = this.props
         console.log(this.props)
         return (
-            <React.Fragment>
                 <View style={styles.container}>
-                    <View style={styles.map}>
-
+                    <View style={styles.header}>
+                        {/* OP's user avatar */}
+                        <Text style={styles.postTitle}>POST TITLE HERE</Text>
+                    </View>
+                    <View style={styles.postContent}>
+                        <Text>George Bush doesn't care about black people. My greatest 
+                            pain in life is that I will never be able to see myself perform live.
+                            Nothing in life is promised except death.
+                        </Text>                        
+                        <View style={styles.buttonContainer}>
+                            <Text>Add Comment</Text> {/* Add comment button here */}
+                            <Text>Go to maps</Text> {/* Go to Maps button here */}
+                        </View>
+                    </View>
+                    <View style={styles.postComments}>
+                        <ScrollView>
+                            <CardItem />
+                            <CardItem />
+                            <CardItem />
+                        </ScrollView>
+                    </View>
+                    <View style={styles.backButtonContainer}>
                         <TouchableOpacity onPress={() => this.props.togglePostModal()} style={styles.button}>
-                            <Text>Back</Text>
+                            <Text style={styles.backButtonText}>Back</Text>
                         </TouchableOpacity>
                     </View>
-
                 </View>
-                <View style={styles.container}>
-                    <TouchableOpacity onPress={() => this.props.togglePostModal()} style={styles.button}>
-                        <Text>Hello</Text>
-                    </TouchableOpacity>
-                </View>
-            </React.Fragment>
         )
     }
 }
@@ -43,21 +56,23 @@ class FullPost extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'
+        backgroundColor: '#EAEAEA',
+        justifyContent: 'space-around'
     },
     header: {
-        backgroundColor: 'blue'
+        marginHorizontal: 10
     },
-    postContent: {
-        backgroundColor: 'brown'
+    backButtonContainer: {
+        marginTop: 30,
+        marginHorizontal: 10
     },
-    map: {
-        backgroundColor: 'pink'
+    backButtonText: {
+        fontWeight: '700',
+        textAlign: 'center'
     },
-    button: {
-        backgroundColor: 'yellow'
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     }
 })
 

@@ -75,6 +75,7 @@ class Home extends Component {
                                         address={post.address}
                                         lat={post.lat}
                                         long={post.long}
+                                        togglePostModal={this.togglePostModal}
                                     />
                                 )
                             })
