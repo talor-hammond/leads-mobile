@@ -2,7 +2,7 @@ import request from 'superagent'
 
 export const GET_USER = 'GET_USER'
 
-const baseURL = "https://jumperlead.herokuapp.com/api/user/"
+const baseURL = "https://jumperlead.herokuapp.com/api/users/"
 
 // client side action
 export function getUser(user) {

@@ -46,6 +46,7 @@ class CardComponent extends Component {
         <React.Fragment>
                 <Modal animationType='slide' visible={fullPostVisible}> 
                     <FullPost
+                        post_id={post_id}
                         username={username}
                         topic={topic}
                         title={title}

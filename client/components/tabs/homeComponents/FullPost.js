@@ -11,25 +11,50 @@ import {
 } from 'react-native'
 
 import { connect } from 'react-redux'
+import { getCommentsRequest, addCommentRequest } from '../../../actions/comments'
+import { getUserRequest } from '../../../actions/users'
+
 
 import Comment from './Comment'
 
 class FullPost extends Component {
     constructor(props) {
-        super(props);
+        super(props)
+
+        this.state = {
+            comments: this.props.comments,
+            comment: ''
+        }
     }
 
     componentDidMount() {
+        const {post_id} = this.props
+        
+        this.props.dispatch(getCommentsRequest(post_id))
+    }
+    
+    addComment() {
+        const username = this.props.auth.user.user_name
 
+        this.props.dispatch(getUserRequest(username))
+
+        let newComment = {
+            content: this.state.comment,
+            post_id: this.props.post_id,
+            user_id: this.props.users.id
+        }
+
+        console.log(newComment)
+
+        this.props.dispatch(addCommentRequest(newComment))
     }
 
     render() {
         console.log(this.props)
         const { username, title, description, address } = this.props
-
-
         return (
             <View style={styles.container}>
+
                 <View style={styles.postContainer}>
                     <View style={styles.header}>
                         {/* OP's user avatar */}
@@ -48,19 +73,20 @@ class FullPost extends Component {
                         </View>
                     </View>
 
+                    <ScrollView>
                     <View style={styles.postComments}>
                         <View style={styles.commentsTitleContainer}>
                             <Text style={styles.commentsTitle}>Comments</Text>
                         </View>
 
                         <View style={styles.containerForAllComments}>
-                            <ScrollView>
-                                <Comment />
-                                <Comment />
-                                <Comment />
-                                <Comment />
-                                <Comment />
-                            </ScrollView>
+                                {
+                                    this.props.comments.map(comment => {
+                                        return (
+                                            <Comment key={comment.id} description={comment.content} published={comment.published} />
+                                        )
+                                    })
+                                }
                         </View>
 
                         <View style={styles.commentContainer}>
@@ -70,6 +96,7 @@ class FullPost extends Component {
                                 autoCapitalize="none"
                                 autoCorrect={true}
                                 style={styles.input}
+                                onChangeText={comment => this.setState({comment})}
                             />
                             <View style={styles.commentButton}>
                                 <TouchableOpacity onPress={() => this.addComment()}>
@@ -78,12 +105,14 @@ class FullPost extends Component {
                             </View>
                         </View>
                     </View>
+                    
 
-                    <View style={styles.backButtonContainer}>
-                        <TouchableOpacity onPress={() => this.props.togglePostModal()} style={styles.button}>
-                            <Text style={styles.backButtonText}>Back</Text>
-                        </TouchableOpacity>
-                    </View>
+                    </ScrollView>
+                <View style={styles.backButtonContainer}>
+                    <TouchableOpacity onPress={() => this.props.togglePostModal()} style={styles.button}>
+                        <Text style={styles.backButtonText}>Back</Text>
+                    </TouchableOpacity>
+                </View>
 
                 </View>
             </View>
@@ -94,15 +123,15 @@ class FullPost extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: '#EAEAEA',
     },
     postContainer: {
         flex: 1,
-        marginTop: 35,
+        marginTop: 15,
         backgroundColor: '#EAEAEA'
     },
     header: {
-        marginHorizontal: 10,
+        alignItems: 'center',
         marginVertical: 20
     },
     postTitle: {
@@ -140,8 +169,10 @@ const styles = StyleSheet.create({
         fontSize: 16
     },
     backButtonContainer: {
-        marginTop: 30,
-        marginHorizontal: 10
+        marginTop: 15,
+        paddingBottom: 20,
+        backgroundColor: 'white',
+        justifyContent: 'center'
     },
     backButtonText: {
         fontWeight: '700',
@@ -168,7 +199,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (props) => {
     return {
         auth: props.auth,
-        users: props.users
+        users: props.users,
+        comments: props.comments
     }
 }
 

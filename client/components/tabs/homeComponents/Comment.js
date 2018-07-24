@@ -12,14 +12,17 @@ import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'nati
 
 class Comment extends Component {
     render() {
+        const { description, published } = this.props
+
         return(
             <View style={styles.container}>
-                <View style={styles.commentText}>
-                    <Text>Hi</Text>
-                    <Text style={styles.datePublished}>24 July 2018</Text>
-                </View>
                 <View style={styles.commentUser}>
                     <Thumbnail source={require('../../../assets/user.png')} /> 
+                </View>
+                <View style={styles.commentText}>
+                    <Text>{description}</Text>
+                    <Text>Username here</Text>
+                    <Text style={styles.datePublished}>{published}</Text>
                 </View>
             </View>
         )
@@ -39,7 +42,8 @@ const styles = StyleSheet.create({
     },
     commentUser: {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     datePublished: {
         fontStyle: 'italic',

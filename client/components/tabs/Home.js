@@ -40,8 +40,6 @@ class Home extends Component {
     }
     
     render() {
-        console.log(this.props)
-
         const { addPostVisible } = this.state
 
         return (
@@ -67,6 +65,7 @@ class Home extends Component {
                                             address={post.address}
                                             lat={post.lat}
                                             long={post.long}
+                                            post_id={post.post_id}
                                             togglePostModal={this.togglePostModal}
                                         />
 
