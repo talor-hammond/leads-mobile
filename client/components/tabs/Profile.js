@@ -11,11 +11,10 @@ import {
     ScrollView
 } from 'react-native'
 
-import { getPostByPostIdRequest } from '../../actions/posts'
-
 import UserPost from './ProfileComponents/UserPost'
 
-import { getPostsRequest } from '../../actions/posts'
+import { getUserRequest } from '../../actions/users'
+import { getPostsByUserIdRequest } from '../../actions/posts'
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 
 class Profile extends Component {
@@ -27,12 +26,23 @@ class Profile extends Component {
         }
     }
 
-    componentDidMount() {
-        // this.props.
+    componentWillMount() {
+        this.props.dispatch(getUserRequest(this.props.auth.user.user_name)) // feed user info into users state
+        // this.props.dispatch(getPostsByUserIdRequest(this.props.users[0].id)) // need this to wait!    
     }
 
+    componentDidMount() {
+        // grab all the user data, username, posts array, etc.
+        // this.props.dispatch(getPostsByUserIdRequest(this.props.users[0].id))
+        // const { posts, auth.user.user_name } = this.props
+        // const username = auth.user.user_name
+        // const usersPosts = this.props.posts.filter(post => post.post_id == 1)        
+        const usersPosts = this.props.posts.filter(post => post.username == this.props.auth.user.user_name)
+        
+        this.setState({posts: usersPosts})
+    }
+    
     render() {
-        console.log(this.props.auth)
 
         return (
             <View style={styles.container}>
@@ -51,9 +61,13 @@ class Profile extends Component {
                 </View>
             
                 <ScrollView style={styles.postsContainer}>
-                    <UserPost />
-                    <UserPost />
-                    <UserPost />
+                    { // if !this.state.posts.map, return some other stuff
+                        this.state.posts.map((post, i) => {
+                            return (
+                                <UserPost key={i} />
+                            )
+                        })
+                    }
                 </ScrollView>
 
             </View>
@@ -90,9 +104,11 @@ const styles = StyleSheet.create({
 
 })
 
-const mapStateToProps = ({auth}) => {
+const mapStateToProps = (props) => {
     return {
-        auth
+        auth: props.auth,
+        users: props.users,
+        posts: props.posts
     }
 }
 

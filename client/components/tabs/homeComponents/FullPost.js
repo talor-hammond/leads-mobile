@@ -22,36 +22,39 @@ class FullPost extends Component {
         super(props)
 
         this.state = {
+            isFetchingUserId: true,
             comments: this.props.comments,
-            comment: ''
+            content: '',
+            post_id: this.props.post_id
         }
     }
 
     componentDidMount() {
-        const {post_id} = this.props
-        
-        this.props.dispatch(getCommentsRequest(post_id))
+        const {post_id, dispatch} = this.props
+
+        dispatch(getCommentsRequest(post_id))
+        dispatch(getUserRequest(this.props.auth.user.user_name))
     }
     
     addComment() {
-        const username = this.props.auth.user.user_name
+        const { content, post_id } = this.state
+        const { dispatch } = this.props
 
-        this.props.dispatch(getUserRequest(username))
-
-        let newComment = {
-            content: this.state.comment,
-            post_id: this.props.post_id,
-            user_id: this.props.users.id
+        const newComment = {
+            content,
+            post_id,
+            user_id: this.props.users[0].id
         }
 
         console.log(newComment)
 
-        this.props.dispatch(addCommentRequest(newComment))
+        dispatch(addCommentRequest(newComment))
     }
 
     render() {
-        console.log(this.props)
-        const { username, title, description, address } = this.props
+        // console.log(this.props)
+
+        const { title, description, address } = this.props
         return (
             <View style={styles.container}>
 
@@ -81,9 +84,9 @@ class FullPost extends Component {
 
                         <View style={styles.containerForAllComments}>
                                 {
-                                    this.props.comments.map(comment => {
+                                    this.props.comments.map((comment, id) => {
                                         return (
-                                            <Comment key={comment.id} description={comment.content} published={comment.published} />
+                                            <Comment key={id} description={comment.content} published={comment.published} />
                                         )
                                     })
                                 }
@@ -96,10 +99,10 @@ class FullPost extends Component {
                                 autoCapitalize="none"
                                 autoCorrect={true}
                                 style={styles.input}
-                                onChangeText={comment => this.setState({comment})}
+                                onChangeText={(content) => this.setState({content})}
                             />
                             <View style={styles.commentButton}>
-                                <TouchableOpacity onPress={() => this.addComment()}>
+                                <TouchableOpacity onPress={() => this.addComment(this.state.comment)}>
                                     <Text style={styles.buttonText}>Add</Text>
                                 </TouchableOpacity>
                             </View>
