@@ -64,7 +64,7 @@ export function addPostRequest(post) {
         .post(baseURL)
         .send(post)
         .then(() => {
-            dispatch(addPost(post))
+            dispatch(getPostsRequest()) // this post here is the one fed in
         })
         .catch(err => {
             if (err) {

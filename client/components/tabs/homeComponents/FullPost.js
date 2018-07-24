@@ -85,7 +85,7 @@ class FullPost extends Component {
                                 {
                                     this.props.comments.map((comment, id) => {
                                         return (
-                                            <Comment key={id} description={comment.content} published={comment.published} />
+                                            <Comment key={id} username={comment.username} description={comment.content} published={comment.published} />
                                         )
                                     })
                                 }
