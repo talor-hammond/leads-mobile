@@ -135,7 +135,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,.35)',
         borderRadius: 6.5,
         paddingHorizontal: 10,
-        marginBottom: 10
+        marginBottom: 10,
+        // justifyContent: 'flex-start'
     },
     bothButtons: {
         marginTop: 45

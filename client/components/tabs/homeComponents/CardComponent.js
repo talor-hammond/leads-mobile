@@ -1,68 +1,90 @@
 import React, { Component } from 'react'
+
 import {
     Platform,
     View,
     Text,
     StyleSheet,
     TouchableOpacity,
-    Linking
+    Linking,
+    Modal
 } from 'react-native'
+
+import FullPost from './FullPost'
 
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 
 class CardComponent extends Component {
+    constructor(props) {
+        super(props) 
+
+        this.state = {
+            fullPostVisible: false
+        }
+
+        this.togglePostModal = this.togglePostModal.bind(this)
+    }
+
     openGps(address) {
         const parsedAddress = address.split(' ').join('+') // parsing the address into something we can feed to google maps url
         
         Linking.openURL(`maps://app?q=${parsedAddress}`)
     }
 
+
+    togglePostModal() {
+        this.setState({
+            fullPostVisible: !this.state.fullPostVisible // reverses the boolean value of fullPostVisible
+        })
+    }
+
     render() {
         const { username, topic, title, description, address, lat, long, post_id } = this.props // need an address!
+        const { fullPostVisible } = this.state
 
         return (
-            <Card style={styles.cardContainer}>
-                <CardItem header bordered>
-                    <Left>
-                        <Thumbnail source={require('../../../assets/user.png')} />
-                        <Text style={styles.username}>{username}</Text>
-                    </Left>
-                    <Right>
-                        <TouchableOpacity onPress={() => this.props.toggleModal()}>
-                            <Text style={styles.openFullPostText}>View full post</Text>
+        <React.Fragment>
+                <Modal animationType='slide' visible={fullPostVisible}> 
+                    <FullPost
+                        username={username}
+                        topic={topic}
+                        title={title}
+                        description={description}
+                        address={address}
+                        lat={lat} 
+                        togglePostModal={this.togglePostModal}
+                    />
+                </Modal>
+
+                <Card style={styles.cardContainer}>
+                    <CardItem header bordered>
+                        <Left>
+                            <Thumbnail source={require('../../../assets/user.png')} />
+                            <Text style={styles.username}>{username}</Text>
+                        </Left>
+                        <Right>
+                            <TouchableOpacity onPress={() => this.togglePostModal()}>
+                                <Text style={styles.openFullPostText}>View full post</Text>
+                            </TouchableOpacity>
+                        </Right>
+                    </CardItem>
+                    <CardItem>
+                        <Body>
+                            <View style={styles.titleContainer}>
+                                <Text style={styles.title}>{title}</Text>
+                            </View>
+                            <View style={styles.descriptionContainer}>
+                                <Text style={styles.description}>{description}</Text>
+                            </View>
+                        </Body>
+                    </CardItem>
+                    <CardItem>
+                        <TouchableOpacity onPress={() => this.openGps(address)}>
+                            <Text style={styles.address}>{address}</Text>
                         </TouchableOpacity>
-                    </Right>
-                </CardItem>
-                <CardItem>
-                    <Body>
-                        <View style={styles.titleContainer}>
-                            <Text style={styles.title}>{title}</Text>
-                        </View>
-                        <View style={styles.descriptionContainer}>
-                            <Text style={styles.description}>{description}</Text>
-                        </View>
-                    </Body>
-                </CardItem>
-                <CardItem>
-                    <TouchableOpacity onPress={() => this.openGps(address)}>
-                        <Text style={styles.address}>{address}</Text>
-                    </TouchableOpacity>
-                </CardItem>
-                <CardItem header bordered style={{ height: 45 }}>
-                    <Left>
-                        <Button transparent>
-                            <Icon name="ios-chatbubbles-outline"
-                                style={{ color: 'black', left: 100 }} />
-                        </Button>
-                    </Left>
-                    <Right>
-                        <Button transparent>
-                            <Icon name="ios-pin-outline"
-                                style={{ color: 'black', right: 100 }} />
-                        </Button>
-                    </Right>
-                </CardItem>
-            </Card>
+                    </CardItem>
+                </Card>
+            </React.Fragment>
         )
     }
 }

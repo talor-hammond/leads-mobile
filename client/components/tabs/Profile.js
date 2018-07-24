@@ -11,13 +11,29 @@ import {
     ScrollView
 } from 'react-native'
 
+import { getPostByPostIdRequest } from '../../actions/posts'
+
 import UserPost from './ProfileComponents/UserPost'
 
 import { getPostsRequest } from '../../actions/posts'
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 
 class Profile extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            posts: []
+        }
+    }
+
+    componentDidMount() {
+        // this.props.
+    }
+
     render() {
+        console.log(this.props.auth)
+
         return (
             <View style={styles.container}>
 
@@ -74,4 +90,10 @@ const styles = StyleSheet.create({
 
 })
 
-export default connect()(Profile)
+const mapStateToProps = ({auth}) => {
+    return {
+        auth
+    }
+}
+
+export default connect(mapStateToProps)(Profile)

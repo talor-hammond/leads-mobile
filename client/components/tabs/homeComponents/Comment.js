@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         margin: 2.5,
+        // marginBottom: 0
     },
     commentText: {
         flex: 3,

@@ -23,12 +23,10 @@ class Home extends Component {
         super(props)
 
         this.state = {
-            addPostVisible: false,
-            fullPostVisible: true
+            addPostVisible: false
         }
 
         this.toggleModal = this.toggleModal.bind(this)
-        this.togglePostModal = this.togglePostModal.bind(this)
     }
     
     componentDidMount() {
@@ -40,25 +38,18 @@ class Home extends Component {
             addPostVisible: !this.state.addPostVisible
         })
     }
-
-    togglePostModal() {
-        this.setState({
-            fullPostVisible: !this.state.fullPostVisible
-        })
-    }
     
     render() {
-        const { addPostVisible, fullPostVisible } = this.state
+        console.log(this.props)
+
+        const { addPostVisible } = this.state
 
         return (
             <React.Fragment>
             
+
                 <Modal animationType='slide' visible={addPostVisible}>
                     <AddPost toggleModal={this.toggleModal} />
-                </Modal>
-
-                <Modal animationType='slide' visible={fullPostVisible}>
-                    <FullPost togglePostModal={this.togglePostModal} />
                 </Modal>
 
                 <Container style={styles.container}>
@@ -66,17 +57,20 @@ class Home extends Component {
                         {
                             this.props.posts.map((post, i) => {
                                 return (
-                                    <CardComponent
-                                        key={i}
-                                        username={post.username}
-                                        topic={post.topic}
-                                        title={post.title}
-                                        description={post.description}
-                                        address={post.address}
-                                        lat={post.lat}
-                                        long={post.long}
-                                        togglePostModal={this.togglePostModal}
-                                    />
+                                    <React.Fragment key={i}>
+
+                                        <CardComponent
+                                            username={post.username}
+                                            topic={post.topic}
+                                            title={post.title}
+                                            description={post.description}
+                                            address={post.address}
+                                            lat={post.lat}
+                                            long={post.long}
+                                            togglePostModal={this.togglePostModal}
+                                        />
+
+                                    </React.Fragment>
                                 )
                             })
                         }
