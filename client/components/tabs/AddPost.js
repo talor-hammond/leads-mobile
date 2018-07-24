@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+import { getUserRequest } from '../../actions/users'
+import { addPostRequest } from '../../actions/posts'
+
 import {
     View,
     Text,
@@ -7,8 +10,41 @@ import {
     TextInput,
     TouchableOpacity
 } from 'react-native'
+import { connect } from 'react-redux';
 
 class AddPost extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            title: '',
+            description: '',
+            address: '',
+            user_id: this.props.auth.user.user_name
+        }
+    }
+    
+    componentDidMount() {
+        const username = this.props.auth.user.user_name
+        this.props.dispatch(getUserRequest(username))
+        console.log(this.props.auth)
+    }
+
+    submit() {
+        const { title, description, address, user_id } = this.state
+
+        const post = {
+            title,
+            description,
+            address,
+            user_id
+        }
+
+        this.props.dispatch(addPostRequest(post))
+
+        this.props.toggleModal() // this needs to wait?
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -25,6 +61,7 @@ class AddPost extends Component {
                         returnKeyType="next"
                         onSubmitEditing={() => this.messageInput.focus()}
                         style={styles.titleInput}
+                        onChangeText={(text) => this.setState({title:text})}
                     />
 
 
@@ -37,6 +74,7 @@ class AddPost extends Component {
                         onSubmitEditing={() => this.addressInput.focus()}
                         ref={(input) => this.messageInput = input}
                         style={styles.descriptionInput}
+                        onChangeText={(text) => this.setState({description:text})}
                     />
 
                     <TextInput
@@ -47,6 +85,7 @@ class AddPost extends Component {
                         returnKeyType="next"
                         ref={(input) => this.addressInput = input}
                         style={styles.titleInput}
+                        onChangeText={(text) => this.setState({address:text})}
                     />
 
                     <View style={styles.bothButtons}>
@@ -72,7 +111,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     pageTitle: {
-        fontSize: 70
+        fontSize: 50,
+        fontFamily: 'Arial'
     },
     titleContainer: {
         marginBottom: 60
@@ -120,4 +160,10 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AddPost
+const mapStateToProps = ({auth}) => {
+    return {
+        auth
+    }
+}
+
+export default connect(mapStateToProps)(AddPost)
