@@ -24,7 +24,7 @@ class FullPost extends Component {
         this.state = {
             comments: this.props.comments,
             content: '',
-            user_id: this.props.users[0].id
+            user_id: this.props.users[0].id,
             post_id: this.props.post_id
         }
     }

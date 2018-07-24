@@ -34,11 +34,11 @@ export function getCommentsRequest (id) {
 
 export function addCommentRequest (comment) {
   return dispatch => {
-    request
-    .post(baseURL)
-    .send(comment)
-    .then(() => {
-      dispatch(addComment(comment))
-    })
+    request // server-side...
+      .post(baseURL + '1') // TODO: remove :id from web-api!!!
+      .send(comment)
+      .then(() => {
+        dispatch(addComment(comment)) // client-side dispatch...
+      })
   }
 }

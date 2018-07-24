@@ -27,7 +27,6 @@ class Profile extends Component {
     }
 
     componentWillMount() {
-        this.props.dispatch(getUserRequest(this.props.auth.user.user_name)) // feed user info into users state
         // this.props.dispatch(getPostsByUserIdRequest(this.props.users[0].id)) // need this to wait!    
     }
 
@@ -44,6 +43,10 @@ class Profile extends Component {
     
     render() {
 
+        console.log(this.props)
+
+        const { users } = this.props
+
         return (
             <View style={styles.container}>
 
@@ -51,7 +54,7 @@ class Profile extends Component {
                     <CardItem header bordered>
                         <Left>
                             <Thumbnail source={require('../../assets/user.png')} />
-                            <Text style={styles.username}>Tay2000</Text>
+                            <Text style={styles.username}>{users[0].user_name}</Text>
                         </Left>
                     </CardItem>
                 </View>
