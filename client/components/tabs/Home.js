@@ -22,7 +22,7 @@ class Home extends Component {
         super(props)
 
         this.state = {
-            addPostVisible: false
+            addPostVisible: true
         }
 
         this.toggleModal = this.toggleModal.bind(this)
