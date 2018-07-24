@@ -4,7 +4,7 @@ import React from 'react';
 import { Provider, connect } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-
+import Profile from './client/components/tabs/Profile'
 import reducers from './client/reducers/index'
 
 // Our root component; 'switches' on auth state?

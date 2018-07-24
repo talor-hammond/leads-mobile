@@ -36,6 +36,8 @@ class Profile extends Component {
             
                 <ScrollView style={styles.postsContainer}>
                     <UserPost />
+                    <UserPost />
+                    <UserPost />
                 </ScrollView>
 
             </View>
@@ -67,10 +69,9 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     postsContainer: {
-        borderWidth: 1,
-        borderColor: 'black',
         marginTop: 5
     }
+
 })
 
 export default connect()(Profile)
