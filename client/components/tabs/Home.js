@@ -137,12 +137,12 @@ const styles = StyleSheet.create({
         borderRadius: 40 / 2,
         bottom:20,
         right:20,
-        backgroundColor: 'rgba(100, 200, 80, 1)',
+        backgroundColor: '#EAEAEA',
         borderWidth: 1
     },
     buttonText: {
-        fontSize: 20,
-        fontWeight: '900'
+        fontSize: 30,
+        fontWeight: '700'
     }
     // buttonContainer: {
     //     height: 40,

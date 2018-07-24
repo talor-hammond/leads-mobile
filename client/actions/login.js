@@ -40,8 +40,10 @@ export function loginUser (creds) {
           dispatch(loginError(response.body.message))
           return Promise.reject(response.body.message)
         } else {
-          const userInfo = saveUserToken(response.body.token)
-          dispatch(receiveLogin(userInfo))
+          saveUserToken(response.body.token)
+            .then(userInfo => {
+              dispatch(receiveLogin(userInfo))
+            })
           // document.location = "/#/"
         }
       }).catch(err => alert("Try Again!"))
