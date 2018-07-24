@@ -25,7 +25,7 @@ class Home extends Component {
         super(props)
 
         this.state = {
-            addPostVisible: true
+            addPostVisible: false
         }
 
         this.toggleModal = this.toggleModal.bind(this)
@@ -46,7 +46,7 @@ class Home extends Component {
     
     render() {
         const { addPostVisible } = this.state
-        console.log(this.props.posts)
+        console.log(this.props)
 
         return (
             <React.Fragment>

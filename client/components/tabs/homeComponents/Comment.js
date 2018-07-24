@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     username: {
         fontWeight: '700'
-    }
+    },
     datePublished: {
         fontStyle: 'italic',
         color: 'rgba(140, 140, 140, 0.8)'

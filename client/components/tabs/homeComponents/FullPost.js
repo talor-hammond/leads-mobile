@@ -47,7 +47,7 @@ class FullPost extends Component {
 
         console.log(newComment)
 
-        dispatch(addCommentRequest(newComment))
+        dispatch(addCommentRequest(newComment, newComment.post_id))
     }
 
     render() {

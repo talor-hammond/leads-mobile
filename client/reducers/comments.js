@@ -7,7 +7,7 @@ export default function posts(state = [], action) {
     case GET_COMMENTS:
       return [...action.comments]
     case ADD_COMMENT:
-      return [...newState, action.comment]
+      return [...newState]
     default:
       return state
   }

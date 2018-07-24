@@ -32,13 +32,13 @@ export function getCommentsRequest (postId) {
   }
 }
 
-export function addCommentRequest (comment) {
+export function addCommentRequest (comment, postId) {
   return dispatch => {
     request // server-side...
       .post(baseURL) // TODO: remove :id from web-api!!!
       .send(comment)
       .then(() => {
-        dispatch(addComment(comment)) // client-side dispatch...
+        dispatch(getCommentsRequest(postId)) // client-side dispatch...
       })
   }
 }
