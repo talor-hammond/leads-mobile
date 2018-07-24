@@ -28,7 +28,9 @@ class CardComponent extends Component {
                         <Text style={styles.username}>{username}</Text>
                     </Left>
                     <Right>
-                        <Text style={styles.openFullPostText}></Text>
+                        <TouchableOpacity onPress={() => this.props.toggleModal()}>
+                            <Text style={styles.openFullPostText}>View full post</Text>
+                        </TouchableOpacity>
                     </Right>
                 </CardItem>
                 <CardItem>
