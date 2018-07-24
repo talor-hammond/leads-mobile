@@ -21,10 +21,10 @@ export function addComment (comment) {
   }
 }
 // Asynchronous; server-side actions; redux-thunk
-export function getCommentsRequest (id) {
+export function getCommentsRequest (postId) {
   return dispatch => {
     request
-    .get(baseURL + id)
+    .get(baseURL + postId)
     .then(res => {
       const comments = res.body
       dispatch(getComments(comments))
@@ -35,7 +35,7 @@ export function getCommentsRequest (id) {
 export function addCommentRequest (comment) {
   return dispatch => {
     request // server-side...
-      .post(baseURL + '1') // TODO: remove :id from web-api!!!
+      .post(baseURL) // TODO: remove :id from web-api!!!
       .send(comment)
       .then(() => {
         dispatch(addComment(comment)) // client-side dispatch...
