@@ -99,6 +99,7 @@ class FullPost extends Component {
                                 autoCorrect={true}
                                 style={styles.input}
                                 onChangeText={(content) => this.setState({content})}
+                                clearButtonMode="always"
                             />
                             <View style={styles.commentButton}>
                                 <TouchableOpacity onPress={() => this.addComment(this.state.comment)}>

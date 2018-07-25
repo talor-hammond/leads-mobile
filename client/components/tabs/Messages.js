@@ -18,7 +18,7 @@ class Messages extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Hello people of earth</Text>
+                <Text>Messages stackNav to go here...</Text>
             </View>
         )
     }
