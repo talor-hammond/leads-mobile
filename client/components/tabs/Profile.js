@@ -11,6 +11,7 @@ import {
     ScrollView
 } from 'react-native'
 
+import { logoutUser } from '../../actions/logout'
 import UserPost from './ProfileComponents/UserPost'
 
 import { getUserRequest } from '../../actions/users'
@@ -43,9 +44,9 @@ class Profile extends Component {
 
     render() {
 
-        console.log(this.state.posts)
+        // console.log(this.props)
 
-        const { users } = this.props
+        const { auth } = this.props
 
         return (
             <View style={styles.container}>
@@ -54,14 +55,22 @@ class Profile extends Component {
                     <CardItem header bordered>
                         <Left>
                             <Thumbnail source={require('../../assets/user.png')} />
-                            <Text style={styles.username}>{users[0].user_name}</Text>
+                            <Text style={styles.username}>{auth.user.user_name}</Text>
                         </Left>
+                        <Right>
+                            <View style={styles.logoutButton}>
+                                <TouchableOpacity onPress={() => this.props.dispatch(logoutUser())}>
+                                    <Text style={styles.logoutText}>Logout</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </Right>
                     </CardItem>
                 </View>
 
                 <View style={styles.postsTextContainer}>
                     <Text style={styles.postText}>Posts</Text>
                 </View>
+                
 
                 <ScrollView style={styles.postsContainer}>
                     { // if !this.state.posts.map, return some other stuff
@@ -108,6 +117,17 @@ const styles = StyleSheet.create({
     },
     postsContainer: {
         marginTop: 5
+    },
+    logoutButton: {
+        backgroundColor: 'rgb(255,20,147)',
+        borderRadius: 10,
+        height: 30,
+        width: 100,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    logoutText: {
+        fontWeight: '600'
     }
 
 })
