@@ -61,7 +61,7 @@ class CardComponent extends Component {
                 <Card style={styles.cardContainer}>
                     <CardItem header bordered>
                         <Left>
-                            <Thumbnail source={require('../../../assets/mscott.jpeg')} />
+                            <Thumbnail source={require('../../../assets/user.png')} />
                             <Text style={styles.username}>{username}</Text>
                         </Left>
                         <Right>

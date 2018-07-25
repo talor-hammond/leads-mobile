@@ -54,7 +54,7 @@ class Profile extends Component {
                 <View style={styles.imageContainer}>
                     <CardItem header bordered>
                         <Left>
-                            <Thumbnail source={require('../../assets/mscott.jpeg')} />
+                            <Thumbnail source={require('../../assets/user.png')} />
                             <Text style={styles.username}>{auth.user.user_name}</Text>
                         </Left>
                         <Right>
@@ -95,7 +95,7 @@ class Profile extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#d4d2f9',
+        backgroundColor: 'rgba(210,210,210,0.8)',
         // alignItems: 'center',
         // justifyContent: 'center'
     },
