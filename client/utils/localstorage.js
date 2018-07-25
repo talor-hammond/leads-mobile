@@ -41,7 +41,7 @@ export async function set(key, value) {
   //   }
 
   if (value) {
-    return AsyncStorage.setItem(key, value)
+    return AsyncStorage.setItem(key, value) // you can use await, or 'return' if the method returns something
   } else {
     return AsyncStorage.removeItem(key)
   }

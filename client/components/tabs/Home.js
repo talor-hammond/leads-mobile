@@ -30,27 +30,29 @@ class Home extends Component {
 
         this.toggleModal = this.toggleModal.bind(this)
     }
-    
+
     componentDidMount() {
         const { dispatch, auth } = this.props
 
         dispatch(getUserRequest(auth.user.user_name))
         dispatch(getPostsRequest())
     }
-    
+
     toggleModal() {
+        console.log('Button clicked!')
+
         this.setState({
             addPostVisible: !this.state.addPostVisible
         })
     }
-    
+
     render() {
         const { addPostVisible } = this.state
         console.log(this.props)
 
         return (
             <React.Fragment>
-            
+
 
                 <Modal animationType='slide' visible={addPostVisible}>
                     <AddPost toggleModal={this.toggleModal} />
@@ -103,11 +105,11 @@ class Home extends Component {
                     </Content>
                 </Container>
 
+                <View style={styles.buttonContainer}>
                     <TouchableOpacity onPress={() => this.toggleModal()}>
-                        <View style={styles.buttonContainer}>
-                            <Text style={styles.buttonText}>+</Text>
-                        </View>
+                        <Text style={styles.buttonText}>+</Text>
                     </TouchableOpacity>
+                </View>
 
             </React.Fragment>
         )
@@ -135,8 +137,8 @@ const styles = StyleSheet.create({
         height: 40,
         width: 40,
         borderRadius: 40 / 2,
-        bottom:20,
-        right:20,
+        bottom: 20,
+        right: 20,
         backgroundColor: '#EAEAEA',
         borderWidth: 1
     },

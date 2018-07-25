@@ -53,7 +53,7 @@ class FullPost extends Component {
     render() {
         console.log(this.props)
 
-        const { title, description, address } = this.props
+        const { title, description, address, id } = this.props
         return (
             <View style={styles.container}>
 

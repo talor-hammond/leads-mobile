@@ -37,13 +37,13 @@ class Profile extends Component {
         // const username = auth.user.user_name
         // const usersPosts = this.props.posts.filter(post => post.post_id == 1)        
         const usersPosts = this.props.posts.filter(post => post.username == this.props.auth.user.user_name)
-        
-        this.setState({posts: usersPosts})
+
+        this.setState({ posts: usersPosts })
     }
-    
+
     render() {
 
-        console.log(this.props)
+        console.log(this.state.posts)
 
         const { users } = this.props
 
@@ -62,12 +62,17 @@ class Profile extends Component {
                 <View style={styles.postsTextContainer}>
                     <Text style={styles.postText}>Posts</Text>
                 </View>
-            
+
                 <ScrollView style={styles.postsContainer}>
                     { // if !this.state.posts.map, return some other stuff
                         this.state.posts.map((post, i) => {
                             return (
-                                <UserPost key={i} />
+                                <UserPost
+                                    key={i}
+                                    id={post.post_id}
+                                    title={post.title}
+                                    description={post.description}
+                                    address={post.address} />
                             )
                         })
                     }
