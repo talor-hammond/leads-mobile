@@ -56,16 +56,16 @@ class FullPost extends Component {
         const { title, description, address, id } = this.props
         return (
             <View style={styles.container}>
-
-                <View style={styles.postContainer}>
                     <View style={styles.header}>
                         {/* OP's user avatar */}
                         <Text style={styles.postTitle}>{title}</Text>
                     </View>
 
+                <View style={styles.postContainer}>
+
                     <View style={styles.postContent}>
                         <View style={styles.descriptionContainer}>
-                            <Text>
+                            <Text style={styles.contentText}>
                                 {description}
                             </Text>
                         </View>
@@ -126,20 +126,24 @@ class FullPost extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#EAEAEA',
+        backgroundColor: '#7971EA',
     },
     postContainer: {
         flex: 1,
         marginTop: 15,
-        backgroundColor: '#EAEAEA'
+        backgroundColor: '#d4d2f9',
+        paddingTop: 20
     },
     header: {
         alignItems: 'center',
-        marginVertical: 20
+        marginVertical: 20,
+        paddingTop: 30,
+        backgroundColor: '#7971EA',
     },
     postTitle: {
         fontWeight: '700',
-        fontSize: 20
+        fontSize: 20,
+        color: 'white'
     },
     descriptionContainer: {
         marginHorizontal: 30
@@ -173,29 +177,36 @@ const styles = StyleSheet.create({
     },
     backButtonContainer: {
         marginTop: 15,
-        paddingBottom: 20,
-        backgroundColor: 'white',
+        paddingVertical: 20,
+        backgroundColor: '#7971EA',
         justifyContent: 'center'
     },
     backButtonText: {
         fontWeight: '700',
-        textAlign: 'center'
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 18
     },
     input: {
         flex: 3
     },
     commentButton: {
         flex: 1,
-        backgroundColor: 'rgba(210,210,210,0.8)',
+        backgroundColor: '#7971EA',
         borderRadius: 4
     },
     buttonText: {
-        textAlign: 'center'
+        textAlign: 'center',
+        color: 'white'
     },
     containerForAllComments: {
         borderBottomWidth: 1,
         borderBottomColor: 'rgba(210,210,210,0.3)',
         paddingBottom: 15
+    },
+    contentText: {
+        fontSize: 18,
+        fontWeight: '700'
     }
 })
 

@@ -119,7 +119,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'rgba(200,200,200,.5)',
+        backgroundColor: '#d4d2f9',
     },
     centered: {
         flex: 1,
@@ -139,12 +139,13 @@ const styles = StyleSheet.create({
         borderRadius: 40 / 2,
         bottom: 20,
         right: 20,
-        backgroundColor: '#EAEAEA',
+        backgroundColor: '#1A2C5B',
         borderWidth: 1
     },
     buttonText: {
         fontSize: 30,
-        fontWeight: '700'
+        fontWeight: '700',
+        color: 'white'
     }
     // buttonContainer: {
     //     height: 40,
