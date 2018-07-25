@@ -7,7 +7,8 @@ import {
     TextInput,
     TouchableOpacity,
     StatusBar,
-    Linking
+    Linking,
+    KeyboardAvoidingView
 } from 'react-native'
 
 import { loginUser } from '../../actions/login'
@@ -56,7 +57,6 @@ class LoginForm extends React.Component {
                         <Text>Haven't registered yet? <Text style={styles.helpText}>Sign up here</Text></Text>
                     </TouchableOpacity>
                 </View>
-
                 <TextInput
                     placeholder="username"
                     placeholderTextColor='#FFF'
@@ -84,7 +84,6 @@ class LoginForm extends React.Component {
         );
     }
 }
-
 const styles = StyleSheet.create({
     container: {
         padding: 20
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
         borderRadius: 6.5
     },
     buttonContainer: {
-        backgroundColor: '#2980b9',
+        backgroundColor: '#1a2c5b',
         paddingVertical: 15,
         borderRadius: 6.5
     },
@@ -121,5 +120,4 @@ const styles = StyleSheet.create({
         marginHorizontal: 5
     }
 })
-
 export default connect()(LoginForm)

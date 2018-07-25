@@ -14,7 +14,7 @@ import {
 import LoginForm from './LoginForm'
 
 // Assets:
-const logo = require('../../assets/logo.png')
+const logo = require('../../assets/logocurved.png')
 
 export default class Login extends React.Component { 
     static navigationOptions = { header: null } // Removing the navigation header from the top.
@@ -28,20 +28,20 @@ export default class Login extends React.Component {
                             style={styles.logo}
                             source={logo}
                         />
-                        <Text style={styles.title}>Tinder for jumper leads</Text>
+                        <Text style={styles.title}>Insert slogan here, cheers</Text>
                     </View>
                 </TouchableWithoutFeedback>
                 <View style={styles.formContainer}>
                     <LoginForm navigation={this.props.navigation}/>
                 </View>
-            </KeyboardAvoidingView >
+            </KeyboardAvoidingView>
         )
     }
 }
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#3498db',
+        backgroundColor: '#7971ea',
     },
     logoContainer: {
         flexGrow: 1,
@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     logo: {
-        width: 135,
-        height: 135
+        width: 150,
+        height: 150
     },
     formContainer: {
         flex: 1,
@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
     },
     title: {
         color: '#FFF',
-        fontSize: 25,
-        marginTop: 10,
+        fontSize: 15,
+        marginTop: 0,
         width: 170,
         textAlign: 'center',
         opacity: 0.89
