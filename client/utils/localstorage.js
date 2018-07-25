@@ -19,26 +19,31 @@ import { AsyncStorage } from 'react-native'
 //   }
 // }
 
-export async function get (key) {
+export async function get(key) {
   return AsyncStorage.getItem(key)
 }
 
-export async function set (key, value) {
-  return new Promise((resolve, reject) => {
-    try {
-      console.log('set')
-      if(value) {
-        await AsyncStorage.setItem(key, value)
-      } else {
-        await AsyncStorage.removeItem(key)
-      }
-      resolve()
-      console.log('setted')
-      return value
-    } catch (error) {
-      reject('error setting to storage')
-      //Error saving data
-    }
-    
-  })
+export async function set(key, value) {
+  // return new Promise((resolve, reject) => {
+  //   try {
+  //     console.log('set')
+  //     if(value) {
+  //       await AsyncStorage.setItem(key, value)
+  //     } else {
+  //       await AsyncStorage.removeItem(key)
+  //     }
+  //     resolve()
+  //     console.log('setted')
+  //     return value
+  //   } catch (error) {
+  //     reject('error setting to storage')
+  //     //Error saving data
+  //   }
+
+  if (value) {
+    return AsyncStorage.setItem(key, value)
+  } else {
+    return AsyncStorage.removeItem(key)
+  }
+
 }
