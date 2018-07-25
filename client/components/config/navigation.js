@@ -38,7 +38,7 @@ export const SignedInTabs = createBottomTabNavigator({
         navigationOptions: {
             toBeLabel: 'Home',
             tabBarLabel: ({ tintColor }) => ( // TODO: Sort tint-color?
-                <Icon name='ios-home-outline' size={35} color={'#7971ea'}/>
+                <Icon name='ios-home-outline' size={35} color={'#1A2C5B'}/>
             )
         }
     },
@@ -47,7 +47,7 @@ export const SignedInTabs = createBottomTabNavigator({
         navigationOptions: {
             toBeLabel: 'CommunityMap',
             tabBarLabel: ({ tintColor }) => (
-                <Icon name='ios-map-outline' size={35} color={'#7971ea'}/>
+                <Icon name='ios-map-outline' size={35} color={'#1A2C5B'}/>
             )
         }
     },
@@ -56,7 +56,7 @@ export const SignedInTabs = createBottomTabNavigator({
         navigationOptions: {
             toBeLabel: 'Messages',
             tabBarLabel: ({ tintColor }) => (
-                <Icon name='ios-send-outline' size={35} color={'#7971ea'}/>
+                <Icon name='ios-send-outline' size={35} color={'#1A2C5B'}/>
             )
         }
     },
@@ -65,7 +65,7 @@ export const SignedInTabs = createBottomTabNavigator({
         navigationOptions: {
             toBeLabel: 'Profile',
             tabBarLabel: ({ tintColor }) => (
-                <Icon name='ios-person-outline' size={35} color={'#7971ea'}/>
+                <Icon name='ios-person-outline' size={35} color={'#1A2C5B'}/>
             )
         }
     }
@@ -77,7 +77,7 @@ export const SignedIn = createStackNavigator({
         navigationOptions: {
             title: 'leads',
             headerStyle: {
-                backgroundColor: '#7971ea'
+                backgroundColor: '#7971EA'
             },      
             headerTitleStyle: {
                 fontWeight: 'bold',
