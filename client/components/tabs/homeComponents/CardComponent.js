@@ -36,6 +36,7 @@ class CardComponent extends Component {
         this.setState({
             fullPostVisible: !this.state.fullPostVisible // reverses the boolean value of fullPostVisible
         })
+        // alert('Button clicked!')
     }
 
     render() {
