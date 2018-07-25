@@ -10,17 +10,16 @@ import {
 
 // Icons import:
 import Icon from 'react-native-vector-icons/Ionicons'
-
 // Tabs:
 import Home from '../tabs/Home'
-import MapView from '../tabs/MapView'
+import CommunityMap from '../tabs/CommunityMap'
 // import AddPost from '../tabs/AddPost'
 import Messages from '../tabs/Messages'
 import Profile from '../tabs/Profile'
 
 // Login stack:
-import Login from '../../components/signUp/Login'
-import Register from '../../components/signUp/Register'
+import Login from '../../components/SignUp/Login'
+import Register from '../../components/SignUp/Register'
 
 // StackNavigator for our Login screens: when a user is SignedOut...
 export const SignedOut = createStackNavigator({
@@ -33,22 +32,22 @@ export const SignedOut = createStackNavigator({
 })
 
 // TabNavigator for our Main Tabs -- when a user is SignedIn...
-export const SignedIn = createBottomTabNavigator({
+export const SignedInTabs = createBottomTabNavigator({
     Home: {
         screen: Home,
         navigationOptions: {
             toBeLabel: 'Home',
             tabBarLabel: ({ tintColor }) => ( // TODO: Sort tint-color?
-                <Icon name='ios-home' size={40} />
+                <Icon name='ios-home-outline' size={35} color={'#7971ea'}/>
             )
         }
     },
-    MapView: {
-        screen: MapView,
+    CommunityMap: {
+        screen: CommunityMap,
         navigationOptions: {
-            toBeLabel: 'MapView',
+            toBeLabel: 'CommunityMap',
             tabBarLabel: ({ tintColor }) => (
-                <Icon name='ios-map' size={40} />
+                <Icon name='ios-map-outline' size={35} color={'#7971ea'}/>
             )
         }
     },
@@ -57,7 +56,7 @@ export const SignedIn = createBottomTabNavigator({
         navigationOptions: {
             toBeLabel: 'Messages',
             tabBarLabel: ({ tintColor }) => (
-                <Icon name='ios-send' size={40} />
+                <Icon name='ios-send-outline' size={35} color={'#7971ea'}/>
             )
         }
     },
@@ -66,8 +65,24 @@ export const SignedIn = createBottomTabNavigator({
         navigationOptions: {
             toBeLabel: 'Profile',
             tabBarLabel: ({ tintColor }) => (
-                <Icon name='ios-person' size={40} />
+                <Icon name='ios-person-outline' size={35} color={'#7971ea'}/>
             )
+        }
+    }
+})
+
+export const SignedIn = createStackNavigator({
+    SignedInTabs: {
+        screen: SignedInTabs,
+        navigationOptions: {
+            title: 'leads',
+            headerStyle: {
+                backgroundColor: '#7971ea'
+            },      
+            headerTitleStyle: {
+                fontWeight: 'bold',
+                color: 'white'
+              },
         }
     }
 })

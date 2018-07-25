@@ -7,17 +7,44 @@ import {
     TextInput,
     TouchableOpacity,
     StatusBar,
-    Modal
+    Linking,
+    KeyboardAvoidingView
 } from 'react-native'
 
-// Our register modal:
-import Register from './Register'
+import { loginUser } from '../../actions/login'
+import { connect } from 'react-redux'
 
 class LoginForm extends React.Component {
+    constructor(props) {
+        super(props) 
+
+        this.state = {
+            user_name: '',
+            password: ''
+        }
+
+        this.login = this.login.bind(this)
+    }
+
+    login() {
+        const { user_name, password } = this.state
+
+        const user = {
+            user_name,
+            password
+        }
+
+        console.log(user)
+
+        this.props.dispatch(loginUser(user))
+    }
+
+    register() {
+        Linking.openURL('https://jumperlead.herokuapp.com/#/register')
+    }
 
     render() {
         const { navigation } = this.props
-        console.log(navigation)
 
         return (
             <View style={styles.container}>
@@ -26,20 +53,20 @@ class LoginForm extends React.Component {
                 />
 
                 <View style={styles.helpTextContainer}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+                    <TouchableOpacity onPress={() => this.register()}>
                         <Text>Haven't registered yet? <Text style={styles.helpText}>Sign up here</Text></Text>
-                    </TouchableOpacity> {/* TODO: Make the sign up here text clickable! Take to Register component */}
+                    </TouchableOpacity>
                 </View>
-
                 <TextInput
-                    placeholder="email address"
+                    placeholder="username"
                     placeholderTextColor='#FFF'
-                    keyboardType="email-address"
+                    // keyboardType="email-address"
                     autoCapitalize="none"
                     autoCorrect={false}
                     returnKeyType="next"
                     onSubmitEditing={() => this.passwordInput.focus()}
                     style={styles.input}
+                    onChangeText={(user_name) => this.setState({user_name})}
                 />
                 <TextInput
                     placeholder="password"
@@ -48,15 +75,15 @@ class LoginForm extends React.Component {
                     secureTextEntry
                     style={styles.input}
                     ref={(input) => this.passwordInput = input}
+                    onChangeText={(password) => this.setState({password})}
                 />
-                <TouchableOpacity onPress={() => navigation.navigate('MainTabs')} style={styles.buttonContainer}>
+                <TouchableOpacity onPress={() => this.login()} style={styles.buttonContainer}>
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
             </View>
         );
     }
 }
-
 const styles = StyleSheet.create({
     container: {
         padding: 20
@@ -71,7 +98,7 @@ const styles = StyleSheet.create({
         borderRadius: 6.5
     },
     buttonContainer: {
-        backgroundColor: '#216583',
+        backgroundColor: '#1a2c5b',
         paddingVertical: 15,
         borderRadius: 6.5
     },
@@ -93,5 +120,4 @@ const styles = StyleSheet.create({
         marginHorizontal: 5
     }
 })
-
-export default LoginForm
+export default connect()(LoginForm)

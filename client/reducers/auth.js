@@ -2,8 +2,8 @@ import { isAuthenticated, getUserTokenInfo } from '../utils/auth'
 
 const initialState = {
   isFetching: false,
-  isAuthenticated: isAuthenticated(),
-  user: getUserTokenInfo(),
+  isAuthenticated: false,
+  user: {},
   errorMessage: ''
 }
 

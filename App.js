@@ -1,26 +1,28 @@
 import React from 'react';
 
-// Components:
-import Login from './client/components/signUp/Login.js'
-import Register from './client/components/signUp/Register'
+// Redux /  react-redux
+import { Provider, connect } from 'react-redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import Profile from './client/components/tabs/Profile'
+import reducers from './client/reducers/index'
 
-import { MainTabs, LoginStack, createRootNavigator } from './client/components/config/navigation'
+// Our root component; 'switches' on auth state?
+import Switch from './Switch'
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props)
+let store = createStore(reducers, compose( // global object, which stores our different types of state.
+  applyMiddleware(thunkMiddleware)
+))
 
-    this.state = {
-      signedIn: true // tracking whether a user is signedIn; defaults to false
-    }
-  }
-
-
-
+class App extends React.Component {
   render() {
-    const { signedIn } = this.state // pulling from state...
-    const Layout = createRootNavigator(signedIn)
-
-    return <Layout />
+    return (
+      <Provider store={store}>
+        <Switch />
+      </Provider>
+    )
   }
 }
+
+// export default connect()(App)
+export default App

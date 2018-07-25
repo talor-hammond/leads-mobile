@@ -20,15 +20,23 @@ export function isAuthenticated () {
 }
 
 export function saveUserToken (token) {
-  set('token', token)
-  return decode(token)
+  // set('token', token)
+  // return decode(token)
+  return set('token', token)
+    .then(() => {
+      return token ? decode(token) : null
+   })
 }
 
 export function getUserTokenInfo () {
-  const token = get('token')
-  return token ? decode(token) : null
+  // const token = get('token')
+  // return token ? decode(token) : null
+  return get('token')
+    .then((token) => {
+      return token ? decode(token) : null
+    })
 }
 
 export function removeUser () {
-  set('token', null)
+  return set('token', null)
 }
