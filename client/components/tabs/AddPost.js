@@ -8,7 +8,10 @@ import {
     Text,
     StyleSheet,
     TextInput,
-    TouchableOpacity
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    KeyboardAvoidingView,
+    Keyboard
 } from 'react-native'
 import { connect } from 'react-redux';
 
@@ -23,7 +26,7 @@ class AddPost extends Component {
             // user_id: this.props.users[0].id
         }
     }
-    
+
     componentDidMount() {
         const username = this.props.auth.user.user_name
         console.log(this.props.auth)
@@ -46,62 +49,70 @@ class AddPost extends Component {
 
         this.props.toggleModal() // this needs to wait?
     }
-
+    
     render() {
 
         console.log(this.props)
 
         return (
             <View style={styles.container}>
-                <View style={styles.titleContainer}>
-                    <Text style={styles.pageTitle}>New Post</Text>
+
+                <View style={styles.cancel}>
+                <TouchableOpacity onPress={() => this.props.toggleModal()} style={styles.redButton}>
+                    <Text style={styles.cancelText}>Cancel</Text>
+                </TouchableOpacity>
                 </View>
-                <View style={styles.formContainer}>
 
-                    <TextInput
-                        placeholder="Post title"
-                        placeholderTextColor='#FFF'
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        returnKeyType="next"
-                        onSubmitEditing={() => this.messageInput.focus()}
-                        style={styles.titleInput}
-                        onChangeText={(text) => this.setState({title:text})}
-                    />
-
-
-                    <TextInput
-                        placeholder="Enter your message here"
-                        placeholderTextColor='#FFF'
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        returnKeyType="next"
-                        onSubmitEditing={() => this.addressInput.focus()}
-                        ref={(input) => this.messageInput = input}
-                        style={styles.descriptionInput}
-                        onChangeText={(text) => this.setState({description:text})}
-                    />
-
-                    <TextInput
-                        placeholder="Enter your address here"
-                        placeholderTextColor='#FFF'
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        returnKeyType="next"
-                        ref={(input) => this.addressInput = input}
-                        style={styles.titleInput}
-                        onChangeText={(text) => this.setState({address:text})}
-                    />
-
-                    <View style={styles.bothButtons}>
-                        <TouchableOpacity onPress={() => this.submit()} style={styles.blueButton}>
-                            <Text style={styles.buttonText}>Submit</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.props.toggleModal()} style={styles.redButton}>
-                            <Text style={styles.buttonText}>Cancel</Text>
-                        </TouchableOpacity>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.pageTitle}>Add a lead...</Text>
                     </View>
+                </TouchableWithoutFeedback>
 
+                <View style={styles.formContainer}>
+                    <KeyboardAvoidingView behavior='padding' style={styles.keyboard}>
+
+                        <TextInput
+                            placeholder="Post title"
+                            placeholderTextColor='rgba(255, 255, 255, 0.8)'
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            returnKeyType="next"
+                            onSubmitEditing={() => this.messageInput.focus()}
+                            style={styles.titleInput}
+                            onChangeText={(text) => this.setState({ title: text })}
+                        />
+
+                        <TextInput
+                            multiline style={{ height: 100, backgroundColor: '#ccc' }}
+                            placeholder="Enter your message here"
+                            placeholderTextColor='rgba(255, 255, 255, 0.8)'
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            returnKeyType="next"
+                            onSubmitEditing={() => this.addressInput.focus()}
+                            ref={(input) => this.messageInput = input}
+                            style={styles.descriptionInput}
+                            onChangeText={(text) => this.setState({ description: text })}
+                        />
+
+                        <TextInput
+                            placeholder="Enter your address here"
+                            placeholderTextColor='rgba(255, 255, 255, 0.8)'
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            returnKeyType="go"
+                            ref={(input) => this.addressInput = input}
+                            style={styles.titleInput}
+                            onChangeText={(text) => this.setState({ address: text })}
+                            onSubmitEditing={() => this.submit()}
+                        />
+                        <View style={styles.bothButtons}>
+                            <TouchableOpacity onPress={() => this.submit()} style={styles.blueButton}>
+                                <Text style={styles.buttonText}>Submit</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </KeyboardAvoidingView>
                 </View>
             </View>
         )
@@ -111,16 +122,18 @@ class AddPost extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'skyblue',
+        backgroundColor: '#7971ea',
         alignItems: 'center',
         justifyContent: 'center'
     },
     pageTitle: {
-        fontSize: 50,
-        fontFamily: 'Arial'
+        fontSize: 30,
+        fontFamily: 'Arial',
+        color: 'white',
+        fontStyle: 'italic'
     },
     titleContainer: {
-        marginBottom: 60
+        marginBottom: 20
     },
     titleInput: {
         height: 50,
@@ -141,19 +154,14 @@ const styles = StyleSheet.create({
         borderRadius: 6.5,
         paddingHorizontal: 10,
         marginBottom: 10,
-        // justifyContent: 'flex-start'
+        flexDirection: 'row',
+        flexWrap: 'wrap'
     },
     bothButtons: {
-        marginTop: 45
+        // marginTop: 10
     },
     blueButton: {
-        backgroundColor: '#2980b9',
-        paddingVertical: 15,
-        marginBottom: 5,
-        borderRadius: 6.5
-    },
-    redButton: {
-        backgroundColor: 'red',
+        backgroundColor: '#1a2c5b',
         paddingVertical: 15,
         marginBottom: 5,
         borderRadius: 6.5
@@ -163,10 +171,24 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontWeight: '700',
         fontSize: 20
+    },
+    cancelButton: {
+        paddingVertical: 15,
+        marginBottom: 5,
+        borderRadius: 6.5
+    },
+    cancel: {
+        position: 'absolute',
+        top: 30,
+        left: 15
+    },
+    cancelText: {
+        fontSize: 19,
+        color: 'rgba(255, 255, 255, 0.8)'
     }
 })
 
-const mapStateToProps = ({auth, users}) => {
+const mapStateToProps = ({ auth, users }) => {
     return {
         auth,
         users
