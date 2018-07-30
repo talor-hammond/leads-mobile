@@ -21,6 +21,7 @@
   "dependencies": {
     "expo": "^27.0.1",
     "install": "^0.12.1",
+    "jest": "^23.4.2",
     "jwt-decode": "^2.2.0",
     "native-base": "^2.7.2",
     "npm": "^6.2.0",
