@@ -6,7 +6,6 @@ export const ADD_POST = 'ADD_POST'
 export const GET_POST_BY_POST_ID = 'GET_POST_BY_POST_ID'
 export const GET_POSTS_BY_USER_ID = 'GET_POSTS_BY_USER_ID'
 
-
 const baseURL = "https://jumperlead.herokuapp.com/api/posts"
 
 // Synchronous; client-side actions
