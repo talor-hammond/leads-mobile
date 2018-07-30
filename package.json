@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "jest-expo": "22.0.0",
+    "jest": "^23.4.2",
     "react-native-scripts": "1.14.0",
     "react-test-renderer": "^16.4.1"
   },
@@ -15,6 +15,31 @@
     "ios": "react-native-scripts ios",
     "test": "jest"
   },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/",
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-native-vector-icons)/"
+],
+    "globals": {
+      "NODE_ENV": "test"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src/frontend",
+      "src/shared"
+    ]
+  },
+  "env": {
+    "production": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    }
+  },
   "dependencies": {
     "babel-jest": "^23.4.2",
     "babel-loader": "^7.1.5",
@@ -22,7 +47,6 @@
     "enzyme": "^3.3.0",
     "expo": "^27.0.1",
     "install": "^0.12.1",
-    "jest": "^23.4.2",
     "jwt-decode": "^2.2.0",
     "native-base": "^2.7.2",
     "npm": "^6.2.0",
