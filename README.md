@@ -33,4 +33,4 @@
 ![gif](https://im4.ezgif.com/tmp/ezgif-4-99215d2bec.gif)
 
 ## Directions w device's Google Map app
-![gif](https://im4.ezgif.com/tmp/ezgif-4-c34d7a0d2b.gif)
+![gif](https://im4.ezgif.com/tmp/ezgif-4-1b21ffc674.gif)
