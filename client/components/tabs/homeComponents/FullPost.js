@@ -7,7 +7,8 @@ import {
     TextInput,
     TouchableOpacity,
     Picker,
-    ScrollView
+    ScrollView,
+    StatusBar
 } from 'react-native'
 
 import { connect } from 'react-redux'
@@ -65,13 +66,21 @@ class FullPost extends Component {
 
                     <View style={styles.postContent}>
                         <View style={styles.descriptionContainer}>
+                            <Text style={styles.description}>
+                                Description:
+                            </Text>
                             <Text>
                                 {description}
                             </Text>
                         </View>
 
                         <View style={styles.addressContainer}>
-                            <Text style={styles.address}>{address}</Text> {/* make this open gps? */}
+                            <Text style={styles.description}>
+                                Address:
+                            </Text>
+                            <Text style={styles.address}>
+                                {address}
+                            </Text> {/* make this open gps? */}
                         </View>
                     </View>
 
@@ -130,19 +139,25 @@ const styles = StyleSheet.create({
     },
     postContainer: {
         flex: 1,
-        marginTop: 15,
         backgroundColor: '#EAEAEA'
     },
     header: {
         alignItems: 'center',
-        marginVertical: 20
+        paddingTop: 45,
+        paddingBottom: 25,
+        backgroundColor: '#7971ea',
+        marginBottom: 10
     },
     postTitle: {
         fontWeight: '700',
-        fontSize: 20
+        fontSize: 22,
+        color: 'white'
     },
     descriptionContainer: {
         marginHorizontal: 30
+    },
+    description: {
+        fontWeight: '700'
     },
     addressContainer: {
         marginTop: 10,
@@ -172,12 +187,12 @@ const styles = StyleSheet.create({
         fontSize: 16
     },
     backButtonContainer: {
-        marginTop: 15,
-        paddingBottom: 20,
-        backgroundColor: 'white',
+        paddingVertical: 20,
+        backgroundColor: '#7971ea',
         justifyContent: 'center'
     },
     backButtonText: {
+        color: 'white',
         fontWeight: '700',
         textAlign: 'center'
     },

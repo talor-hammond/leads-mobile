@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 // Redux /  react-redux
 import { Provider, connect } from 'react-redux'

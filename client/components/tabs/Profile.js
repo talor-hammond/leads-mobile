@@ -8,7 +8,8 @@ import {
     StyleSheet,
     TouchableOpacity,
     Image,
-    ScrollView
+    ScrollView,
+    StatusBar
 } from 'react-native'
 
 import { logoutUser } from '../../actions/logout'
@@ -50,6 +51,10 @@ class Profile extends Component {
 
         return (
             <View style={styles.container}>
+
+                <StatusBar
+                    barStyle="light-content"
+                />
 
                 <View style={styles.imageContainer}>
                     <CardItem header bordered>

@@ -9,7 +9,8 @@ import {
     Animated, // for our Animated.View inside each Marker
     View,
     StyleSheet,
-    Text
+    Text,
+    StatusBar
 } from 'react-native'
 
 class CommunityMap extends Component {
@@ -75,6 +76,10 @@ class CommunityMap extends Component {
                     // customMapStyle={generatedMapStyle} ...custom mapStyles are causing issues with custom marker style
                     initialRegion={region}
                 >
+
+                <StatusBar
+                    barStyle="light-content"
+                />
 
                     <MapView.Marker // marker at the user's current location.
                         coordinate={{

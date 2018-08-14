@@ -5,7 +5,8 @@ import {
     Text,
     TouchableOpacity,
     StyleSheet,
-    Modal
+    Modal,
+    StatusBar
 } from 'react-native'
 
 import AddPost from './AddPost'
@@ -53,7 +54,10 @@ class Home extends Component {
         return (
             <React.Fragment>
 
-
+                <StatusBar
+                    barStyle="light-content"
+                />
+                
                 <Modal animationType='slide' visible={addPostVisible}>
                     <AddPost toggleModal={this.toggleModal} />
                 </Modal>

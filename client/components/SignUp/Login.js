@@ -28,7 +28,7 @@ export default class Login extends React.Component {
                             style={styles.logo}
                             source={logo}
                         />
-                        <Text style={styles.title}>JavaScript bundle failed to build: exit-code 60</Text>
+                        <Text style={styles.title}>Stay connected with your community</Text>
                     </View>
                 </TouchableWithoutFeedback>
                 <View style={styles.formContainer}>
