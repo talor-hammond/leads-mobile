@@ -15,5 +15,6 @@
   
 ### App-walkthrough
 Log-in
-![hello](https://i.gyazo.com/368211f81abd869872894e059af5b04f.gif =200x200)
+![hello](https://i.gyazo.com/368211f81abd869872894e059af5b04f.gif=200x200)
+<img src='https://i.gyazo.com/368211f81abd869872894e059af5b04f.gif' height='200' />
 
