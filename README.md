@@ -2,8 +2,8 @@
 * Stay connected / up-to-date with your community
  * Post leads to whatever is going on around you; posts will be mapped by address using geolocation / reverse-geocoding
  * Users will be able to see alerts in their area from the view of a map, or individual posts by a view of cards
+ * Directions to each lead just by tapping on the address of the post
  * Communicate through comments
-  * *Plan to have direct-messaging*
  
  ### Technology
  * leads is a full-stack mobile-app built using:
