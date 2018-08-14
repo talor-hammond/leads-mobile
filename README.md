@@ -14,6 +14,8 @@
   * our [**leads-web**](https://github.com/talor-hammond/leads-web) **api** & google maps api
   
 ### App-walkthrough
-Log-in
-
+## Log-in
 <img src="https://i.gyazo.com/0297bb1b8b09edd3f9c7cf6cd2a38058.png" width="200"/>
+
+## Add a lead
+![gif](https://im4.ezgif.com/tmp/ezgif-4-6a2e65ccb1.gif)
