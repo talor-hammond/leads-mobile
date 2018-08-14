@@ -13,9 +13,9 @@
   * **knex** + and **sqlite**
   * our [**leads-web**](https://github.com/talor-hammond/leads-web) **api** & google maps api
   
-### App-walkthrough
-## Log-in
-<img src="https://i.gyazo.com/0297bb1b8b09edd3f9c7cf6cd2a38058.png" width="200"/>
+# App-walkthrough
+## Log-in screens
+<img src="https://i.gyazo.com/0297bb1b8b09edd3f9c7cf6cd2a38058.png" width="300"/>
 
 ## Home page
 ![gif](https://im4.ezgif.com/tmp/ezgif-4-65cdafb575.gif)
@@ -23,7 +23,7 @@
 ## Commenting on a user post
 ![gif](https://im4.ezgif.com/tmp/ezgif-4-65a2337709.gif)
 
-## Add a lead
+## Adding a lead
 ![gif](https://im4.ezgif.com/tmp/ezgif-4-8c9a2ee545.gif)
 
 ## Map view of posts (community map; geolocation)
