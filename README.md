@@ -16,4 +16,4 @@
 ### App-walkthrough
 Log-in
 
-![image](https://i.gyazo.com/0297bb1b8b09edd3f9c7cf6cd2a38058.png =200x200)
+<img src="https://i.gyazo.com/0297bb1b8b09edd3f9c7cf6cd2a38058.png" width="200" height="200"/>
