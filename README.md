@@ -15,7 +15,7 @@
   
 # App-walkthrough
 ## Log-in screens
-<img src="https://i.gyazo.com/0297bb1b8b09edd3f9c7cf6cd2a38058.png" width="300"/>
+<img src="https://gyazo.com/e61c04bc4514281c09c227178aeae721" width="300"/><img src="https://gyazo.com/ba7508cf5e5bd41f91114b2a1e309238" width="300"/>
 
 ## Home page
 ![gif](https://im4.ezgif.com/tmp/ezgif-4-65cdafb575.gif)
