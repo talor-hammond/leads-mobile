@@ -12,3 +12,7 @@
   * auth / bcrypt
   * **knex** + and **sqlite**
   * our [**leads-web**](https://github.com/talor-hammond/leads-web) **api** & google maps api
+  
+![hello](https://gyazo.com/e61c04bc4514281c09c227178aeae721)
+![hello](https://gyazo.com/ba7508cf5e5bd41f91114b2a1e309238)
+
