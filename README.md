@@ -17,5 +17,20 @@
 ## Log-in
 <img src="https://i.gyazo.com/0297bb1b8b09edd3f9c7cf6cd2a38058.png" width="200"/>
 
+## Home page
+![gif](https://im4.ezgif.com/tmp/ezgif-4-65cdafb575.gif)
+
+## Commenting on a user post
+![gif](https://im4.ezgif.com/tmp/ezgif-4-65a2337709.gif)
+
 ## Add a lead
 ![gif](https://im4.ezgif.com/tmp/ezgif-4-8c9a2ee545.gif)
+
+## Map view of posts (community map; geolocation)
+![gif](https://im4.ezgif.com/tmp/ezgif-4-e23ee2a7e6.gif)
+
+## Descriptions of leads around you
+![gif](https://im4.ezgif.com/tmp/ezgif-4-99215d2bec.gif)
+
+## Directions w device's Google Map app
+![gif](https://im4.ezgif.com/tmp/ezgif-4-4be87ccc60.gif)
