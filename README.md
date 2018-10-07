@@ -8,10 +8,10 @@
  ### Technology
  * leads is a full-stack mobile-app built using:
     * **react-native**; react
-    * **redux**
-    * auth / bcrypt
-    * **knex** + and **sqlite**
-    * our [**leads-web**](https://github.com/talor-hammond/leads-web) **api** & google maps api
+    * **redux** and redux-thunk (middleware for asynchronous action-creators) to manage the application's state
+    * auth / bcrypt (Async Storage for the setting and checking of jwts)
+    * REST API built with Node, Knex, and Express
+    * Google's geocoding API to parse lats & longs from addresses; the phone's Geolocation API and navigator methods
   
 # App-walkthrough
 ## Log-in screens
