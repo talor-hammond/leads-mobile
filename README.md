@@ -13,18 +13,11 @@
     * REST API built with Node, Knex, and Express
     * Google's geocoding API to parse lats & longs from addresses; the phone's Geolocation API and navigator methods
   
-# App-walkthrough
 ## Log-in screens
 ![gif](https://media.giphy.com/media/1lyNai83MIg0NYZFhQ/giphy.gif)
 
 ## Home page
-![gif](https://im4.ezgif.com/tmp/ezgif-4-65cdafb575.gif)
-
-## Commenting on a user post
-![gif](https://im4.ezgif.com/tmp/ezgif-4-65a2337709.gif)
-
-## Adding a lead
-![gif](https://im4.ezgif.com/tmp/ezgif-4-8c9a2ee545.gif)
+![gif](https://media.giphy.com/media/cJDcDrpLkOZYbZCT0I/giphy.gif)
 
 ## Map view of posts (community map; geolocation)
 ![gif](https://im4.ezgif.com/tmp/ezgif-4-e23ee2a7e6.gif)
